@@ -26,7 +26,7 @@ production:
   host: ec2-23-21-231-58.compute-1.amazonaws.com
   adapter: postgresql
   encoding: unicode
-  database: dcr9v4fro04jl5
+  database: dda3u805ghgpgf
   pool: 5
-  username: vtwowfxnkdpfcm
-  password: 19291cbe6bfa48dc770b021a60077a7dce5e2ed982bd5e6372d6b3ac77f6e786
+  username: dohhpoylrdbxji
+  password: 1f4df57fe67534bdd92ac7fce3147b6a7eb14b191a3fff7dd70e4b8addf81db7
