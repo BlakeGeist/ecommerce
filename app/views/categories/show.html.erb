@@ -1,0 +1,15 @@
+<div>
+
+  <div><%= @category.name %></div>
+
+  <div><%= @category.description %></div>
+
+  <% if @products && @products.count > 0 %>
+
+    <%= render '/templates/products' %>
+
+    <%= will_paginate @products %>
+
+  <% end %>
+
+</div>

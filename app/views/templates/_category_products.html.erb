@@ -1,0 +1,19 @@
+<div class="products-product">
+
+  <%= link_to category.name, category_url(category), class: 'products-product-heading' %>
+
+  <% if product.product_details.where(name: 'image').as_json[0] %>
+
+    <%= link_to image_tag(product.product_details.where(name: 'image').as_json[0]['value'], class: 'products-product-image'), category_url(category), class: 'products-product-link' %>
+
+  <% end %>
+
+  <div>
+
+    <%= link_to 'send to cat', {controller: 'brands', action: "cat_to_brand", cat_id: category.id}, :method => :post, remote: true %>
+
+    <%= link_to 'Destroy', category_path(category.id),method: :delete, data: { confirm: 'Are you sure?' } %>
+
+  </div>
+
+</div>

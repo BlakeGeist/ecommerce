@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    <% if @title %>
+      <%= @title %>
+    <% else %>
+      Ecommerce
+    <% end %>
+  </title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <header>
+
+    <nav class="header-nav">
+
+      <div class="nav-left">
+
+        <%= link_to 'Home', root_url %>
+
+        | <%= link_to 'Categories', categories_url, data: {toggle: 'categories-mega-menu'} %>
+
+        | <%= link_to 'Brands', brands_url, data: {toggle: 'brands-mega-menu'} %>
+
+        | <%= link_to 'About Us', root_url %>
+
+        | <%= link_to 'Contact Us', root_url %>
+
+      </div>
+
+      <div class="nav-right">
+
+        <%= user_session %>
+
+        <% if user_signed_in? %>
+
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+
+          | <%= link_to 'Account', edit_user_registration_path %>
+
+        <% else %>
+
+          <%= link_to "Sign Up", new_user_registration_path %>
+
+          | <%= link_to "Login", new_user_session_path %>
+
+        <% end %>
+
+        <div class="header-nav-item mod-cart">
+
+          | <%= link_to 'Cart', root_url, data: {toggle: 'cart'} %>
+
+          (<span data-cart-count><%= cartCount() %></span>)
+
+         <div class="cart-container" data-cart-target data-target="cart">
+
+           <% if @cart && @cart.cart_items.count > 0 %>
+
+             <%= render '/templates/cart' %>
+
+           <% end %>
+
+         </div>
+
+       </div>
+
+      </div>
+
+    </nav>
+
+    <div class="header-nav-item mod-categories-mega" data-target="categories-mega-menu">
+
+      <%= link_to 'View All Categories...', categories_url, class: 'categories-mega-item' %>
+
+      <% $categories.each do |category| %>
+
+        <%= link_to category.name, category_url(category), class: 'categories-mega-item' %>
+
+      <% end %>
+
+    </div>
+
+    <div class="header-nav-item mod-categories-mega" data-target="brands-mega-menu">
+
+      <%= link_to 'View All Brands...', brands_url, class: 'categories-mega-item' %>
+
+      <% $brands.each do |brand| %>
+
+        <%= link_to brand.name, brand_url(brand), class: 'categories-mega-item' %>
+
+      <% end %>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <%= yield %>
+
+  </main>
+
+  <footer>
+
+    <div class="footer-body">
+
+      <div class="footer-item mod-footer-nav">
+
+        <div class="footer-item-heading">Information</div>
+
+        <%= link_to 'Home', root_url, class: 'footer-nav-item' %>
+
+        <%= link_to 'About', root_url, class: 'footer-nav-item' %>
+
+        <%= link_to 'Customer Service', root_url, class: 'footer-nav-item' %>
+
+        <%= link_to 'Contact Us', root_url, class: 'footer-nav-item' %>
+
+        <%= link_to 'Privacy Policy', root_url, class: 'footer-nav-item' %>
+
+        <%= link_to 'Terms and Agreements', root_url, class: 'footer-nav-item' %>
+
+        <%= link_to 'Site Map', root_url, class: 'footer-nav-item' %>
+
+      </div>
+
+      <div class="footer-item mod-footer-nav">
+
+        <div class="footer-item-heading">Account</div>
+
+        <%= link_to 'Sign In', root_url, class: 'footer-nav-item' %>
+
+        <%= link_to 'View Cart', root_url, class: 'footer-nav-item' %>
+
+      </div>
+
+      <div class="footer-item mod-newsletter">
+
+        <div class="footer-item-heading">Newsletter</div>
+
+        <div class="footer-item-form">
+
+          <div class="footer-item-form-heading">Sign Up for Our Newsletter:</div>
+
+          <div class="footer-item-form-inputs">
+
+            <input class="footer-item-form-inputs-input mod-email" name="email" placeholder="Join the Newsletter" type="email" />
+
+            <input class="footer-item-form-inputs-input mod-submit" name="submit" type="submit" />
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer-footer">
+
+      <div class="footer-footer-body">
+
+        © <%= Time.current.year %> Adult Products and Toys. All Rights Reserved.
+
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>

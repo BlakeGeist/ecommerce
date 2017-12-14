@@ -1,0 +1,27 @@
+// Place all the styles related to the Brands controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.brands {
+  display: flex;
+  justify-content: space-between;
+}
+.brands-brand {
+  -webkit-box-shadow: 1px 2px 7px 0px #b7b7b7;
+  -moz-box-shadow: 1px 2px 7px 0px #b7b7b7;
+  box-shadow: 1px 2px 7px 0px #b7b7b7;
+  background-color: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 5px;
+  display: flex;
+  flex: 0 1 200px;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: bold;
+  justify-content: center;
+  margin: 10px 0;
+  padding: 5px;
+  text-align: center;
+}
+  .brands-brand-image-img {
+    width: 100%;
+  }

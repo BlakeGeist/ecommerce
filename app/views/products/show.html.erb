@@ -1,0 +1,19 @@
+<div>
+
+  <h1><%= @product.name %></h1>
+
+  <% @product.product_details.each do |detail| %>
+
+    <div><%= detail.name %></div>
+
+    <div><%= detail.value %></div>
+
+  <% end %>
+
+  <%= image_tag(@product.product_details.where(name:'image').as_json[0]['value'], class: 'products-product-image') %>
+
+  <div class="product-description mod-short"><%= raw @product.product_details.where(name: 'short_desc').as_json[0]['value'] %></div>
+
+  <div class="product-description mod-long"><%= raw @product.product_details.where(name:'description').as_json[0]['value'] %></div>
+
+</div>

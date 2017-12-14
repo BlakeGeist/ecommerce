@@ -1,0 +1,52 @@
+// Place all the styles related to the Categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.mod-categories-mega {
+  -webkit-box-shadow: 1px 2px 7px 0px #2b2b2b;
+  -moz-box-shadow: 1px 2px 7px 0px #2b2b2b;
+  box-shadow: 1px 2px 7px 0px #2b2b2b;
+  background: #fff;
+  border: 1px solid #c3c3c3;
+  border-radius: 5px;
+  display: none;
+  flex-wrap: wrap;
+  max-height: 700px;
+  max-width: 1400px;
+  overflow-y: scroll;
+  position: absolute;
+  &.is-open {
+    display: flex;
+  }
+}
+  .categories-mega-item {
+    display: -webkit-box;
+    flex: 0 1 19%;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 5px;
+    overflow: hidden;
+    word-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+  .categories-category {
+    flex: 0 1 250px;
+  }
+    .categories-category-heading {
+      display: block;
+      height: 30px;
+      line-height: 30px;
+    }
+    .categories-category-product {
+      text-align: center;
+    }
+      .categories-category-product-image {
+        max-width: 250px;
+        max-height: 250px;
+        text-align: center;
+      }

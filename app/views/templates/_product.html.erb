@@ -1,0 +1,29 @@
+<div class="products-product">
+
+  <%= link_to product.name, product_url(product), class: 'products-product-heading' %>
+
+  <% if product.product_details.where(name: 'image')[0] %>
+
+    <%= link_to image_tag(product.product_details.where(name: 'image')[0]['value'], class: 'products-product-image'), product_url(product), class: 'products-product-link' %>
+
+  <% end %>
+
+  <div class="products-product-details">
+
+    Price $<%= proffit_point(product.product_details.where(name: 'price').as_json[0]['value']) %>
+
+    <% if product.product_details.where(name: 'suggested_retail').as_json[0] && product.product_details.where(name: 'suggested_retail').as_json[0]['value'].to_f > proffit_point(product.product_details.where(name: 'price').as_json[0]['value'])  %>
+
+      <span class="products-product-details-item mod-msrp">$<%= product.product_details.where(name: 'suggested_retail').as_json[0]['value'] %></span>
+
+    <% end %>
+
+    <div>
+
+      <%= link_to 'Add', {controller: 'cart_items', action: "create", product_id: product.id}, :method => :post, remote: true %>
+
+    </div>
+
+  </div>
+
+</div>

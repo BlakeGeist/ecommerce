@@ -1,0 +1,87 @@
+// Place all the styles related to the Carts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.cart-container {
+  position: relative;
+  &.is-open {
+    .cart {
+      display: block;
+    }
+  }
+}
+.cart {
+  background-color: #fff;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  display: none;
+  overflow: hidden;
+  padding: 5px 10px 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  min-width: 530px;
+}
+  .cart-item {
+    border-bottom: 1px dashed #c7c7c7;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+  }
+    .cart-item-add {
+      padding: 0 3px;
+    }
+      .cart-item-quantity-amount {
+        padding: 0 5px;
+      }
+      .cart-item-detail {
+        padding: 0 5px;
+        &.mod-image {
+          flex: 0 1 40px;
+          text-align: center;
+          .cart-item-image-img {
+            max-height: 25px;
+            vertical-align: middle;
+          }
+        }
+        &.mod-quantity {
+          display: flex;
+        }
+        &.mod-name {
+          flex: 1 1;
+          min-height: 3rem;
+          overflow: hidden;
+          word-wrap: break-word;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          display: -webkit-box;
+        }
+      }
+      .cart-item-icon {
+        background: url(https://s.cdpn.io/6035/glyphicons-halflings-white.png) no-repeat;
+        border-radius: 3px;
+        display: inline-block;
+        width: 19px;
+        height: 17px;
+        margin-top: 1px;
+        line-height: 14px;
+        vertical-align: text-top;
+        &.mod-add {
+          background-color: #2371a5;
+          background-position: -405px -95px;
+        }
+        &.mod-remove {
+          background-color: #e74c3c;
+          background-position: -430px -95px;
+        }
+      }
+  .cart-total {
+    text-align: right;
+  }
+
+  .button {
+    &.checkout-button {
+      font-size: 12px;
+      padding: 3px 7px;
+      font-weight: bold;
+    }
+  }
