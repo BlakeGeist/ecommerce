@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
    def show
      @category = Category.friendly.find(params[:id])
      @title = "#{@category.name}"
-     @products = Product.joins(:product_details).joins(:product_categories).where(product_details: {name: 'active'}).where(product_details: {value: '1'}).where(product_categories: {category_id: @category.id}).order(:name).uniq.paginate(:page => params[:page], :per_page => 24)
+     @products = Product.joins(:product_details).joins(:product_categories).where(product_details: {name: 'active'}).where(product_details: {value: '1'}).uniq.where(product_categories: {category_id: @category.id}).order(:name).uniq.paginate(:page => params[:page], :per_page => 24)
    end
 
    def create
