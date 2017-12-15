@@ -9,11 +9,11 @@ body {
   align-content: center;
   align-items: center;
   display: flex;
-  flex: 0 1 1400px;
   flex-wrap: wrap;
   justify-content: center;
 }
 header {
+  flex: 0 1 1400px;
 }
 .header-nav {
   display: flex;
