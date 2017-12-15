@@ -1,0 +1,81 @@
+<%= @site.name %>
+
+<div class="carousel">
+
+  <div class="carousel-slide mod-one"><%= image_tag 'banner-1.jpg' %></div>
+
+</div>
+
+<section class="main">
+
+  <% unless @paginated %>
+
+    <h2>Top Brands</h2>
+
+    <div class="brands">
+
+      <% @brands.each do |brand| %>
+
+        <a class="brands-brand" href="<%= brand_url(brand) %>">
+
+          <div class="brands-brand-name"><%= brand.name %></div>
+
+          <% if brand.logo %>
+
+            <div class="brands-brand-image"><%= image_tag(brand.logo, class: 'brands-brand-image-img') %></div>
+
+          <% end %>
+
+        </a>
+
+      <% end %>
+
+    </div>
+
+    <hr />
+
+    <h2>Top Categories</h2>
+
+    <div class="categories">
+
+      <% @categories.each do |category| %>
+
+        <%= render '/templates/category_products', product: category_product(category), category: category  %>
+
+      <% end %>
+
+    </div>
+
+    <hr />
+
+    <h2>Top Adult Products</h2>
+
+  <% end %>
+
+  <%= render '/templates/products' %>
+
+  <% if @paginated %>
+
+    <%= will_paginate @products %>
+
+  <% else %>
+
+    <div class='paginate-link'><%= link_to 'More', '/products/page/1/', class: 'button' %></div>
+
+  <% end %>
+
+</section>
+
+<aside class="categories-sidebar">
+
+  <h3 class="categories-sidebar-heading"><%= link_to 'Categories', categories_url %></h3>
+
+  <% $top_categories.each do |category| %>
+
+    <%= link_to category.name, category_url(category), class: 'categories-sidebar-item' %>
+
+  <% end %>
+
+  <%= link_to 'View All Categories', categories_url, class: 'categories-sidebar-item' %>
+
+</aside>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212075605) do
+ActiveRecord::Schema.define(version: 20171214080129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,32 @@ ActiveRecord::Schema.define(version: 20171212075605) do
     t.string   "slug"
   end
 
+  create_table "site_details", force: :cascade do |t|
+    t.string   "name"
+    t.text     "value"
+    t.integer  "site_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "site_details", ["site_id"], name: "index_site_details_on_site_id", using: :btree
+
+  create_table "site_products", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "site_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "site_products", ["site_id"], name: "index_site_products_on_site_id", using: :btree
+
+  create_table "sites", force: :cascade do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -95,4 +121,6 @@ ActiveRecord::Schema.define(version: 20171212075605) do
   add_foreign_key "cart_items", "carts"
   add_foreign_key "product_categories", "products"
   add_foreign_key "product_details", "products"
+  add_foreign_key "site_details", "sites"
+  add_foreign_key "site_products", "sites"
 end

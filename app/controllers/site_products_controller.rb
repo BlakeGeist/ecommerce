@@ -1,0 +1,2 @@
+class SiteProductsController < ApplicationController
+end

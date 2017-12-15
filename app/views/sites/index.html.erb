@@ -1,0 +1,25 @@
+<section class="sites">
+
+  <table class="sites-table">
+
+    <% @sites.each do |site| %>
+
+      <tr>
+
+        <td><%= link_to site.name, site_path(site) %></td>
+
+      </tr>
+
+    <% end %>
+
+  </table>
+
+  <%= form_for @site do |f|  %>
+
+    <%= f.text_field :name %>
+
+    <%= f.submit %>
+
+  <% end %>
+
+</section>
