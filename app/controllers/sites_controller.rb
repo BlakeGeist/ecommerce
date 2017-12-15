@@ -12,6 +12,9 @@ class SitesController < ApplicationController
    end
 
    def show
+     unless @site
+       render 'sites/index'
+     end
      @products = Product.where(id: @site.site_products.map(&:product_id))
      @category = Category.new
      @categories = Category.order(:name).paginate(:page => params[:page], :per_page => 10)

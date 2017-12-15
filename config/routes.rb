@@ -31,23 +31,18 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :sites do
-    resources :categories
-    resources :brands
-    resources :products
-  end
-
+  resources :sites
+  resources :brands
+  resources :categories
 
   get '/products/page/:page' => 'products#index'
   get '/categories' => 'categories#index'
-  get '/categories/:category/page/:page' => 'categories#show'
+  get '/categories/:id/page/:page' => 'categories#show'
   get ':site' => 'sites#show'
   get ':site/categories' => 'categories#index'
   get ':site/categories/:category' => 'categories#show'
   get ':site/products/:product' => 'products#show'
 
-  resources :categories
-  resources :brands
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -30,7 +30,9 @@ class ApplicationController < ActionController::Base
     if @domain.to_s.include? '.com'
       @domain = @domain.gsub('.com', '')
     end
-    @site = Site.friendly.find(@domain)
+    unless request.domain == 'geistcompany.com'
+      @site = Site.friendly.find(@domain)
+    end
   end
 
 end
