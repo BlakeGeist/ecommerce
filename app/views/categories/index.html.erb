@@ -1,9 +1,17 @@
-<div class="categories">
+<%= render 'templates/header' %>
 
-  <% @categories.each do |category| %>
+<main>
 
-    <%= render '/templates/category_products', product: category_product(category), category: category  %>
+  <div class="categories">
 
-  <% end %>
+    <% @categories.each do |category| %>
 
-</div>
+      <%= render '/templates/category_products', product: category_product(category), category: category  %>
+
+    <% end %>
+
+  </div>
+
+</main>
+
+<%= render 'templates/footer' %>
