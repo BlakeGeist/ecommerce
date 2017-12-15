@@ -40,10 +40,10 @@ Rails.application.routes.draw do
 
   get '/products/page/:page' => 'products#index'
   get '/categories' => 'categories#index'
+  get '/categories/:category/page/:page' => 'categories#show'
   get ':site' => 'sites#show'
   get ':site/categories' => 'categories#index'
   get ':site/categories/:category' => 'categories#show'
-  get ':site/categories/:category/page/:page' => 'categories#show'
   get ':site/products/:product' => 'products#show'
 
   resources :categories
