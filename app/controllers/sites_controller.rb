@@ -13,7 +13,7 @@ class SitesController < ApplicationController
 
    def show
      unless @site
-       @sites = Sites.all
+       @sites = Site.all
        render 'sites/index'
      end
      @products = Product.where(id: @site.site_products.map(&:product_id))
