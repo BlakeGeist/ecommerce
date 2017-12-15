@@ -1,4 +1,5 @@
 class SitesController < ApplicationController
+  skip_before_action :set_site, only: [:create]
   def index
     @sites = Site.all
 
@@ -11,7 +12,6 @@ class SitesController < ApplicationController
    end
 
    def show
-     @site = Site.first
      @products = Product.where(id: @site.site_products.map(&:product_id))
      @category = Category.new
      @categories = Category.order(:name).paginate(:page => params[:page], :per_page => 10)
