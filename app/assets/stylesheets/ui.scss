@@ -1,16 +1,19 @@
 html {
   background-color: #fff;
   background-image: url('/assets/bg.png');
+  display: flex;
   font-family: sans-serif;
+  justify-content: center;
 }
 body {
+  align-content: center;
+  align-items: center;
   display: flex;
+  flex: 0 1 1400px;
   flex-wrap: wrap;
   justify-content: center;
 }
 header {
-  width: 100%;
-  max-width: 1400px;
 }
 .header-nav {
   display: flex;

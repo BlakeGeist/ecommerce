@@ -1,16 +1,23 @@
-<div>
+<%= render 'templates/header' %>
 
-  <%= form_for @brand do |f|  %>
+<main>
 
-    <%= f.text_field :name %>
+  <div>
 
-    <%= f.text_field :logo %>
+    <%= form_for @brand do |f|  %>
 
-    <%= f.submit %>
+      <%= f.text_field :name %>
 
-  <% end %>
+      <%= f.text_field :logo %>
 
-</div>
+      <%= f.submit %>
 
+    <% end %>
 
-<%= render '/templates/products' %>
+  </div>
+
+  <%= render '/templates/products' %>
+
+</main>
+
+<%= render '/templates/footer' %>

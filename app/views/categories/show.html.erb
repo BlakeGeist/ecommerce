@@ -1,15 +1,23 @@
-<div>
+<%= render 'templates/header' %>
 
-  <div><%= @category.name %></div>
+<main>
+  
+  <div>
 
-  <div><%= @category.description %></div>
+    <div><%= @category.name %></div>
 
-  <% if @products && @products.count > 0 %>
+    <div><%= @category.description %></div>
 
-    <%= render '/templates/products' %>
+    <% if @products && @products.count > 0 %>
 
-    <%= will_paginate @products %>
+      <%= render '/templates/products' %>
 
-  <% end %>
+      <%= will_paginate @products %>
 
-</div>
+    <% end %>
+
+  </div>
+
+</main>
+
+<%= render 'templates/footer' %>

@@ -1,19 +1,27 @@
-<div>
+<%= render 'templates/header' %>
 
-  <h1><%= @product.name %></h1>
+<main>
 
-  <% @product.product_details.each do |detail| %>
+  <div>
 
-    <div><%= detail.name %></div>
+    <h1><%= @product.name %></h1>
 
-    <div><%= detail.value %></div>
+    <% @product.product_details.each do |detail| %>
 
-  <% end %>
+      <div><%= detail.name %></div>
 
-  <%= image_tag(@product.product_details.where(name:'image').as_json[0]['value'], class: 'products-product-image') %>
+      <div><%= detail.value %></div>
 
-  <div class="product-description mod-short"><%= raw @product.product_details.where(name: 'short_desc').as_json[0]['value'] %></div>
+    <% end %>
 
-  <div class="product-description mod-long"><%= raw @product.product_details.where(name:'description').as_json[0]['value'] %></div>
+    <%= image_tag(@product.product_details.where(name:'image').as_json[0]['value'], class: 'products-product-image') %>
 
-</div>
+    <div class="product-description mod-short"><%= raw @product.product_details.where(name: 'short_desc').as_json[0]['value'] %></div>
+
+    <div class="product-description mod-long"><%= raw @product.product_details.where(name:'description').as_json[0]['value'] %></div>
+
+  </div>
+
+</main>
+
+<%= render 'templates/footer' %>
