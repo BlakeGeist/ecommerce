@@ -39,7 +39,6 @@ Rails.application.routes.draw do
 
 
   get '/products/page/:page' => 'products#index'
-
   get '/categories' => 'categories#index'
   get ':site' => 'sites#show'
   get ':site/categories' => 'categories#index'
