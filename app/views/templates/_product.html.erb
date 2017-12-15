@@ -1,10 +1,10 @@
 <div class="products-product">
 
-  <%= link_to product.name, product_link(@site, product), class: 'products-product-heading' %>
+  <%= link_to product.name, product_url(product), class: 'products-product-heading' %>
 
   <% if product.product_details.where(name: 'image')[0] %>
 
-    <%= link_to image_tag(product.product_details.where(name: 'image')[0]['value'], class: 'products-product-image'), product_link(@site, product), class: 'products-product-link' %>
+    <%= link_to image_tag(product.product_details.where(name: 'image')[0]['value'], class: 'products-product-image'), product_url(product), class: 'products-product-link' %>
 
   <% end %>
 

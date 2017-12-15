@@ -37,12 +37,15 @@ Rails.application.routes.draw do
     resources :products
   end
 
+
+  get '/products/page/:page' => 'products#index'
+
+  get '/categories' => 'categories#index'
   get ':site' => 'sites#show'
   get ':site/categories' => 'categories#index'
   get ':site/categories/:category' => 'categories#show'
   get ':site/categories/:category/page/:page' => 'categories#show'
   get ':site/products/:product' => 'products#show'
-  get ':site/products/page/:page' => 'products#index'
 
   resources :categories
   resources :brands
