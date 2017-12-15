@@ -1,79 +1,87 @@
-<div class="carousel">
+<%= render '/templates/header' %>
 
-  <div class="carousel-slide mod-one"><%= image_tag 'banner-1.jpg' %></div>
+<main>
 
-</div>
+  <div class="carousel">
 
-<section class="main">
+    <div class="carousel-slide mod-one"><%= image_tag 'banner-1.jpg' %></div>
 
-  <% unless @paginated %>
+  </div>
 
-    <h2>Top Brands</h2>
+  <section class="main">
 
-    <div class="brands">
+    <% unless @paginated %>
 
-      <% @brands.each do |brand| %>
+      <h2>Top Brands</h2>
 
-        <a class="brands-brand" href="<%= brand_url(brand) %>">
+      <div class="brands">
 
-          <div class="brands-brand-name"><%= brand.name %></div>
+        <% @brands.each do |brand| %>
 
-          <% if brand.logo %>
+          <a class="brands-brand" href="<%= brand_url(brand) %>">
 
-            <div class="brands-brand-image"><%= image_tag(brand.logo, class: 'brands-brand-image-img') %></div>
+            <div class="brands-brand-name"><%= brand.name %></div>
 
-          <% end %>
+            <% if brand.logo %>
 
-        </a>
+              <div class="brands-brand-image"><%= image_tag(brand.logo, class: 'brands-brand-image-img') %></div>
 
-      <% end %>
+            <% end %>
 
-    </div>
+          </a>
 
-    <hr />
+        <% end %>
 
-    <h2>Top Categories</h2>
+      </div>
 
-    <div class="categories">
+      <hr />
 
-      <% @categories.each do |category| %>
+      <h2>Top Categories</h2>
 
-        <%= render '/templates/category_products', product: category_product(category), category: category  %>
+      <div class="categories">
 
-      <% end %>
+        <% @categories.each do |category| %>
 
-    </div>
+          <%= render '/templates/category_products', product: category_product(category), category: category  %>
 
-    <hr />
+        <% end %>
 
-    <h2>Top Adult Products</h2>
+      </div>
 
-  <% end %>
+      <hr />
 
-  <%= render '/templates/products' %>
+      <h2>Top Adult Products</h2>
 
-  <% if @paginated %>
+    <% end %>
 
-    <%= will_paginate @products %>
+    <%= render '/templates/products' %>
 
-  <% else %>
+    <% if @paginated %>
 
-    <div class='paginate-link'><%= link_to 'More', '/products/page/1/', class: 'button' %></div>
+      <%= will_paginate @products %>
 
-  <% end %>
+    <% else %>
 
-</section>
+      <div class='paginate-link'><%= link_to 'More', '/products/page/1/', class: 'button' %></div>
 
-<aside class="categories-sidebar">
+    <% end %>
 
-  <h3 class="categories-sidebar-heading"><%= link_to 'Categories', categories_url %></h3>
+  </section>
 
-  <% $top_categories.each do |category| %>
+  <aside class="categories-sidebar">
 
-    <%= link_to category.name, category_url(category), class: 'categories-sidebar-item' %>
+    <h3 class="categories-sidebar-heading"><%= link_to 'Categories', categories_url %></h3>
 
-  <% end %>
+    <% $top_categories.each do |category| %>
 
-  <%= link_to 'View All Categories', categories_url, class: 'categories-sidebar-item' %>
+      <%= link_to category.name, category_url(category), class: 'categories-sidebar-item' %>
 
-</aside>
+    <% end %>
+
+    <%= link_to 'View All Categories', categories_url, class: 'categories-sidebar-item' %>
+
+  </aside>
+
+  </main>
+
+<%= render 'templates/footer' %>
