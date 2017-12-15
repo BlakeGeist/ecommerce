@@ -27,7 +27,9 @@ class ApplicationController < ActionController::Base
 
   def set_site
     @domain = request.domain
-    @site = Site.friendly.find(@domain)
+    if params[:site]
+      @site = Site.friendly.find(params[:site])
+    end
   end
 
 end
