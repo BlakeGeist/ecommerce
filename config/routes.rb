@@ -32,11 +32,13 @@ Rails.application.routes.draw do
   end
 
   resources :sites
+  resources :admin
   resources :brands
   resources :categories
 
   get '/products/page/:page' => 'products#index'
   get '/categories' => 'categories#index'
+  get '/login' => 'admin#login'
   get '/categories/:id/page/:page' => 'categories#show'
   get ':site' => 'sites#show'
   get ':site/categories' => 'categories#index'
