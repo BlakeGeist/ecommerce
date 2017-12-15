@@ -1,4 +1,5 @@
 class SitesController < ApplicationController
+  skip_before_action :set_site, only: [:create]
   def index
     @sites = Site.all
 
