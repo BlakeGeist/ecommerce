@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
    end
 
    def show
-     @product = Product.friendly.find(params[:id])
+     @product = Product.friendly.find(params[:product])
      @title = "#{@product.name}"
    end
 
@@ -46,7 +46,6 @@ class ProductsController < ApplicationController
 
    def send_product_to_site
      @product = Product.find(params[:product_id])
-     @site = Site.find(params[:site_id])
      @site.site_products.find_or_create_by!(product_id: @product.id)
     render :nothing => true
    end

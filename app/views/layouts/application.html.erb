@@ -22,7 +22,7 @@
 
         <%= link_to 'Home', root_url %>
 
-        | <%= link_to 'Categories', categories_url, data: {toggle: 'categories-mega-menu'} %>
+        <% if @site.slug %>| <%= link_to 'Categories', categories_site_link, data: {toggle: 'categories-mega-menu'} %><% end %>
 
         | <%= link_to 'Brands', brands_url, data: {toggle: 'brands-mega-menu'} %>
 
@@ -74,11 +74,15 @@
 
     <div class="header-nav-item mod-categories-mega" data-target="categories-mega-menu">
 
-      <%= link_to 'View All Categories...', categories_url, class: 'categories-mega-item' %>
+      <% if @site.slug %>
 
-      <% $categories.each do |category| %>
+        <%= link_to 'View All Categories...', categories_site_link, class: 'categories-mega-item' %>
 
-        <%= link_to category.name, category_url(category), class: 'categories-mega-item' %>
+        <% $categories.each do |category| %>
+
+          <%= link_to category.name, category_link(category), class: 'categories-mega-item' %>
+
+        <% end %>
 
       <% end %>
 

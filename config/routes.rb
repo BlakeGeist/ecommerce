@@ -32,16 +32,17 @@ Rails.application.routes.draw do
   end
 
   resources :sites do
-    resources :products do
-      resources :product_details
-      resources :product_categories
-      collection do
-        post :send_product_to_site
-      end
-    end
+    resources :categories
+    resources :brands
+    resources :products
   end
 
   get ':site' => 'sites#show'
+  get ':site/categories' => 'categories#index'
+  get ':site/categories/:category' => 'categories#show'
+  get ':site/categories/:category/page/:page' => 'categories#show'
+  get ':site/products/:product' => 'products#show'
+  get ':site/products/page/:page' => 'products#index'
 
   resources :categories
   resources :brands

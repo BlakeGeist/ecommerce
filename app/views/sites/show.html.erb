@@ -60,7 +60,7 @@
 
   <% else %>
 
-    <div class='paginate-link'><%= link_to 'More', '/products/page/1/', class: 'button' %></div>
+    <div class='paginate-link'><%= link_to 'More', '/' + @site.slug + '/products/page/1/', class: 'button' %></div>
 
   <% end %>
 
@@ -72,7 +72,7 @@
 
   <% $top_categories.each do |category| %>
 
-    <%= link_to category.name, category_url(category), class: 'categories-sidebar-item' %>
+    <%= link_to category.name, category_link(category), class: 'categories-sidebar-item' %>
 
   <% end %>
 

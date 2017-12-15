@@ -11,7 +11,6 @@ class SitesController < ApplicationController
    end
 
    def show
-     @site = Site.friendly.find(params[:site])
      @products = Product.where(id: @site.site_products.map(&:product_id))
      @category = Category.new
      @categories = Category.order(:name).paginate(:page => params[:page], :per_page => 10)
@@ -30,7 +29,7 @@ class SitesController < ApplicationController
      @site = Site.new(site_params)
 
      if @site.save
-       redirect_to @site
+       redirect_to root_url + @site.slug
      else
        render 'new'
      end
@@ -44,7 +43,6 @@ class SitesController < ApplicationController
 
    def update
      @site = Site.friendly.find(params[:id])
-
      if @site.update(site_params)
        redirect_to @site
      end

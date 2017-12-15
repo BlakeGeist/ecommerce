@@ -1,10 +1,10 @@
 <div class="products-product">
 
-  <%= link_to category.name, category_url(category), class: 'products-product-heading' %>
+  <%= link_to category.name, category_link(category), class: 'products-product-heading' %>
 
   <% if product.product_details.where(name: 'image').as_json[0] %>
 
-    <%= link_to image_tag(product.product_details.where(name: 'image').as_json[0]['value'], class: 'products-product-image'), category_url(category), class: 'products-product-link' %>
+    <%= link_to image_tag(product.product_details.where(name: 'image').as_json[0]['value'], class: 'products-product-image'), category_link(category), class: 'products-product-link' %>
 
   <% end %>
 
