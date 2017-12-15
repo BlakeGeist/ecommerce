@@ -22,37 +22,53 @@
 
         <%= link_to 'Home', root_url %>
 
-        | <%= link_to 'Categories', categories_url, data: {toggle: 'categories-mega-menu'} %>
+        <span class="nav-item">|</span>
 
-        | <%= link_to 'Brands', brands_url, data: {toggle: 'brands-mega-menu'} %>
+        <%= link_to 'Categories', categories_url, data: {toggle: 'categories-mega-menu'} %>
 
-        | <%= link_to 'About Us', root_url %>
+        <span class="nav-item">|</span>
 
-        | <%= link_to 'Contact Us', root_url %>
+        <%= link_to 'Brands', brands_url, data: {toggle: 'brands-mega-menu'} %>
+
+        <span class="nav-item">|</span>
+
+        <%= link_to 'About Us', root_url %>
+
+        <span class="nav-item">|</span>
+
+        <%= link_to 'Contact Us', root_url %>
 
       </div>
 
       <div class="nav-right">
 
-        <%= user_session %>
+        <span class="nav-item"><%= current_user.email %></span>
+
+        <span class="nav-item">|</span>
 
         <% if user_signed_in? %>
 
-          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+          <span class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></span>
 
-          | <%= link_to 'Account', edit_user_registration_path %>
+          <span class="nav-item">|</span>
+
+          <span class="nav-item"><%= link_to 'Account', edit_user_registration_path %></span>
 
         <% else %>
 
-          <%= link_to "Sign Up", new_user_registration_path %>
+          <span class="nav-item"><%= link_to "Sign Up", new_user_registration_path %></span>
 
-          | <%= link_to "Login", new_user_session_path %>
+          <span class="nav-item">|</span>
+
+          <span class="nav-item"><%= link_to "Login", new_user_session_path %></span>
 
         <% end %>
 
-        <div class="header-nav-item mod-cart">
+        <div class="nav-item-right mod-cart">
 
-          | <%= link_to 'Cart', root_url, data: {toggle: 'cart'} %>
+          <span class="nav-item">|</span>
+
+          <%= link_to 'Cart', root_url, data: {toggle: 'cart'} %>
 
           (<span data-cart-count><%= cartCount() %></span>)
 
