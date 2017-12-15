@@ -13,9 +13,7 @@ class SitesController < ApplicationController
 
    def show
      unless @site
-       @sites = Site.all
-       @site = Site.new
-       render 'sites/index'
+       render 'admin/login'
      end
      @products = Product.where(id: @site.site_products.map(&:product_id))
      @category = Category.new
