@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'sites#index'
+  root 'sites#show'
 
   resources :products do
     resources :product_details
