@@ -4,9 +4,9 @@
 
     <%= form_for(:user, :url => session_path(:user)) do |f| %>
 
-      <%= f.text_field :email %>
+      <%= f.text_field :email, placeholder: "Email" %>
 
-      <%= f.password_field :password %>
+      <%= f.password_field :password, placeholder: "Password" %>
 
       <div class="login-body-form-checkbox"><%= f.check_box :remember_me %></div>
 
