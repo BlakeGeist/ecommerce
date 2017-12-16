@@ -4,7 +4,7 @@ class AdminController < ApplicationController
     @sites = Site.order('created_at DESC')
   end
   def login
-    if user_signed_in? && current_user.is_admin?
+    if current_user && current_user.is_admin
       redirect_to :controller => 'admin', :action => 'index'
     end
   end
