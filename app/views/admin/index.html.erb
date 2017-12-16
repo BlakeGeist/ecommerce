@@ -1,1 +1,29 @@
-asdf
+<header>
+
+  <nav>
+
+    <%= render '/templates/user_nav' %>
+
+  </nav>
+
+</header>
+
+<main>
+
+  <table>
+
+    <% @sites.each do |site| %>
+
+      <tr>
+
+        <td><%= site.name %></td>
+
+        <td><%= link_to 'Delete', site_url(site.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+
+    <% end %>
+
+  </table>
+
+</main>

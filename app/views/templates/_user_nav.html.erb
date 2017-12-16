@@ -1,0 +1,9 @@
+<span class="nav-item"><%= current_user.email %></span>
+
+<span class="nav-item">|</span>
+
+<span class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></span>
+
+<span class="nav-item">|</span>
+
+<span class="nav-item"><%= link_to 'Account', edit_user_registration_path %></span>
