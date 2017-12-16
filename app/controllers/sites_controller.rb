@@ -4,11 +4,16 @@ class SitesController < ApplicationController
     redirect_to root_url
    end
 
-   def show
-     unless @site
-       redirect_to :controller => 'admin', :action => 'login'
-       return
-     end
+    def show
+      unless @site
+      if current_user && current_user.is_admin
+        redirect_to :controller => 'admin', :action => 'index'
+      else
+        redirect_to :controller => 'admin', :action => 'login'
+      end
+    end
+
+     return
      @products = Product.where(id: @site.site_products.map(&:product_id))
      @category = Category.new
      @categories = Category.order(:name).paginate(:page => params[:page], :per_page => 10)
