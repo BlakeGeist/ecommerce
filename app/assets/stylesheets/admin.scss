@@ -19,6 +19,9 @@
   header {
     height: 50px;
     line-height: 50px;
+    a {
+      color: #fff;
+    }
   }
   main {
     background-color: rgba(000,000,00,0.3);
@@ -30,8 +33,10 @@
     flex: 1 1 100%;
     padding: 5px;
   }
-  a {
-    color: #fff;
+  .products-product {
+    &.is-active {
+      border: 4px dashed #00da25;
+    }
   }
 }
 .login {

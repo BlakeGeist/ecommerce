@@ -4,7 +4,8 @@ class CategoriesController < ApplicationController
   def index
     @site = Site.find_by(name: request.domain)
 
-    @categories = Category.order(:name)
+    @categories = Category.where(id: @site.site_categories.map(&:category_id))
+    @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(10)
     respond_to do |format|
       format.js
       format.html
@@ -12,11 +13,14 @@ class CategoriesController < ApplicationController
    end
 
    def show
-     @params = params
+     @site = Site.find_by(name: request.domain)
+
      @category = Category.friendly.find(params[:id])
+     @categories = Category.where(id: @site.site_categories.map(&:category_id)).paginate(:page => params[:page], :per_page => 10)
+     @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(10)
 
      @title = "#{@category.name}"
-     @products = Product.joins(:product_details).joins(:product_categories).where(product_details: {name: 'active'}).where(product_details: {value: '1'}).uniq.where(product_categories: {category_id: @category.id}).order(:name).uniq.paginate(:page => params[:page], :per_page => 24)
+     @products = Product.where(id: @site.site_products.map(&:product_id)).where(product_categories: {category_id: @category.id}).joins(:product_categories).uniq.paginate(:page => params[:page], :per_page => 10)
    end
 
    def create

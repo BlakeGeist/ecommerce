@@ -1,14 +1,13 @@
 html {
   background-color: #fff;
   background-image: url('/assets/bg.png');
-  display: flex;
   font-family: sans-serif;
-  justify-content: center;
 }
 body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  height: 100%;
 }
 header {
   flex: 0 1 1400px;
