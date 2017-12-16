@@ -54,6 +54,14 @@
     }
   }
   .login-body-logo {
+    flex: 1;
+    padding: 20px 0;
     text-align: center;
+    img {
+      max-width: 250px;
+    }
+  }
+  input[type="submit"] {
+    cursor: pointer;
   }
 }
