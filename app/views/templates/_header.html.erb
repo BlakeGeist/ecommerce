@@ -68,7 +68,7 @@
 
     <%= link_to 'View All Categories...', categories_url, class: 'categories-mega-item' %>
 
-    <% $categories.each do |category| %>
+    <% @categories.each do |category| %>
 
       <%= link_to category.name, category_url(category), class: 'categories-mega-item' %>
 
@@ -80,7 +80,7 @@
 
     <%= link_to 'View All Brands...', brands_url, class: 'categories-mega-item' %>
 
-    <% $brands.each do |brand| %>
+    <% @brands.each do |brand| %>
 
       <%= link_to brand.name, brand_url(brand), class: 'categories-mega-item' %>
 

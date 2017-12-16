@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .brands {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 .brands-brand {

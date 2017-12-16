@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171216075706) do
+ActiveRecord::Schema.define(version: 20171216082102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 20171216075706) do
     t.string   "slug"
   end
 
+  create_table "site_brands", force: :cascade do |t|
+    t.integer  "brand_id"
+    t.integer  "site_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "site_brands", ["site_id"], name: "index_site_brands_on_site_id", using: :btree
+
   create_table "site_categories", force: :cascade do |t|
     t.integer  "category_id"
     t.integer  "site_id"
@@ -131,6 +140,7 @@ ActiveRecord::Schema.define(version: 20171216075706) do
   add_foreign_key "cart_items", "carts"
   add_foreign_key "product_categories", "products"
   add_foreign_key "product_details", "products"
+  add_foreign_key "site_brands", "sites"
   add_foreign_key "site_categories", "sites"
   add_foreign_key "site_details", "sites"
   add_foreign_key "site_products", "sites"
