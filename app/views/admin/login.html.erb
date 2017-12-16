@@ -4,6 +4,12 @@
 
     <%= form_for(:user, :url => session_path(:user)) do |f| %>
 
+      <div class="login-body-logo">
+
+        <%= image_tag('gc.png') %>
+
+      </div>
+
       <%= f.text_field :email, placeholder: "Email" %>
 
       <%= f.password_field :password, placeholder: "Password" %>
