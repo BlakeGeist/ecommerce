@@ -10,42 +10,50 @@
 
 <main>
 
-  <table>
+  <div class="admin-body">
 
-    <% @sites.each do |site| %>
+    <table>
 
-      <tr>
+      <% @sites.each do |site| %>
 
-        <td><%= site.name %></td>
+        <tr>
 
-        <td><%= site.slug %></td>
+          <td><%= site.name %></td>
 
-        <td><%= link_to 'Delete', site_url(site.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= site.slug %></td>
 
-        <td>
+          <td><%= link_to 'Delete', site_url(site.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
-          <%= form_for site do |f| %>
+          <td>
 
-            <%= f.text_field :name %>
+            <%= form_for site do |f| %>
 
-            <%= f.submit %>
+              <%= f.text_field :name %>
 
-          <% end %>
+              <%= f.submit %>
 
-        </td>
+            <% end %>
 
-      </tr>
+          </td>
 
-    <% end %>
+        </tr>
 
-  </table>
+      <% end %>
 
-  <%= form_for @site do |f| %>
+    </table>
 
-    <%= f.text_field :name %>
+    <div>
 
-    <%= f.submit %>
+      <%= form_for @site do |f| %>
 
-  <% end %>
+        <%= f.text_field :name %>
+
+        <%= f.submit %>
+
+      <% end %>
+
+    </div>
+
+  </div>
 
 </main>
