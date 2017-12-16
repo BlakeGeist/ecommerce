@@ -1,5 +1,5 @@
 class Cart < ActiveRecord::Base
-  has_many :cart_items
+  has_many :cart_items, dependent: :destroy
 
   def add_product(product_id)
     cart_item = self.cart_items.find_or_create_by!(

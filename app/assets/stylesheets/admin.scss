@@ -65,3 +65,12 @@
     cursor: pointer;
   }
 }
+.admin-index-page {
+  nav {
+    display: flex;
+    justify-content: flex-end;
+  }
+  body {
+    flex: 1 1 100%;
+  }
+}
