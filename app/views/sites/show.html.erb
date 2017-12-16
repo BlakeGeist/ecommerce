@@ -54,7 +54,6 @@
 
     <% end %>
 
-    <%= render '/templates/products' %>
 
     <% if @paginated %>
 
@@ -74,7 +73,7 @@
 
     <% $top_categories.each do |category| %>
 
-      <%= link_to category.name, category_link(category), class: 'categories-sidebar-item' %>
+      <%= link_to category.name, category_url(category), class: 'categories-sidebar-item' %>
 
     <% end %>
 

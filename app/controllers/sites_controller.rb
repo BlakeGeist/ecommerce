@@ -4,9 +4,9 @@ class SitesController < ApplicationController
     end
 
     def show
-      if Site.friendly.exists? request.domain
-        @site = Site.friendly.find(request.domain)
-      else
+      @site = Site.find_by(name: request.domain)
+
+      unless @site
         if params[:controller] == 'sites'
           redirect_to :controller => 'admin', :action => 'login'
         end
