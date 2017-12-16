@@ -4,17 +4,16 @@ class ProductsController < ApplicationController
 
   def index
     require 'money'
+    @site = Site.find_by(name: request.domain)
     @products = Product.joins(:product_details).where(product_details: {name: 'active'}).where(product_details: {value: '1'}).order(:name).first(10)
     @category = Category.new
     @categories = Category.order(:name).paginate(:page => params[:page], :per_page => 10)
-    @brands = Brand.first(5)
+    @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(10)
 
     @paginated = params[:page]
 
     if @paginated
-      @site = Site.find_by(name: request.domain)
       @products = Product.where(id: @site.site_products.map(&:product_id)).paginate(:page => params[:page], :per_page => 30)
-
     end
 
     respond_to do |format|
@@ -24,6 +23,9 @@ class ProductsController < ApplicationController
    end
 
    def show
+     @site = Site.find_by(name: request.domain)
+     @categories = Category.where(id: @site.site_categories.map(&:category_id))
+     @brands = Brand.where(id: @site.site_brands.map(&:brand_id))
      @product = Product.friendly.find(params[:id])
      @title = "#{@product.name}"
    end

@@ -1,0 +1,9 @@
+<div class="products">
+
+  <% @products.each do |product| %>
+
+    <%= render '/templates/admin_product', product: product  %>
+
+  <% end %>
+
+</div>

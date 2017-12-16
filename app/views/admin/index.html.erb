@@ -40,20 +40,41 @@
 
       <% end %>
 
+      <tr>
+
+        <td></td>
+
+        <td></td>
+
+        <td>New Site</td>
+
+        <%= form_for @new_site do |f| %>
+
+          <td>
+
+            <%= f.text_field :name %>
+
+            <%= f.submit %>
+
+          </td>
+
+        <% end %>
+
+      </tr>
+
     </table>
 
-    <div>
 
-      <%= form_for @site do |f| %>
+    <%=   %>
 
-        <%= f.text_field :name %>
+    <div class="products">
 
-        <%= f.submit %>
-
-      <% end %>
+      <%= render '/templates/admin_products' %>
 
     </div>
 
   </div>
+
+  <%= will_paginate @products %>
 
 </main>
