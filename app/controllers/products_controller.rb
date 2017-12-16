@@ -12,8 +12,8 @@ class ProductsController < ApplicationController
     @paginated = params[:page]
 
     if @paginated
-
-      @products = Product.joins(:product_details).where(product_details: {name: 'active'}).where(product_details: {value: '1'}).order(:name).paginate(:page => params[:page], :per_page => 30)
+      @site = Site.find_by(name: request.domain)
+      @products = Product.where(id: @site.site_products.map(&:product_id)).paginate(:page => params[:page], :per_page => 30)
 
     end
 
