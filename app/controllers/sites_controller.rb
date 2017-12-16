@@ -11,14 +11,11 @@ class SitesController < ApplicationController
         end
         return
       end
-     @products = Product.where(id: @site.site_products.map(&:product_id))
+     @products = Product.where(id: @site.site_products.map(&:product_id)).first(10)
      @category = Category.new
      @categories = Category.order(:name).paginate(:page => params[:page], :per_page => 10)
      @brands = Brand.first(5)
      @paginated = params[:page]
-     if @paginated
-       @products = Product.joins(:product_details).uniq.where(product_details: {name: 'active'}).where(product_details: {value: '1'}).order(:name).paginate(:page => params[:page], :per_page => 30)
-     end
    end
 
    def create
