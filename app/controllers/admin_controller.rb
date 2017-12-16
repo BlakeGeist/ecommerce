@@ -2,6 +2,7 @@ class AdminController < ApplicationController
   before_action :auth_user, only: [:index]
   def index
     @sites = Site.order('created_at DESC')
+    @site = Site.find_by(name: request.domain)
     @new_site = Site.new
     @products = Product.joins(:product_details).where(product_details: {name: 'active'}).where(product_details: {value: '1'}).order('created_at').paginate(:page => params[:page], :per_page => 30)
   end

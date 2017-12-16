@@ -65,13 +65,15 @@
     </table>
 
 
-    <%=   %>
+    <% if @site && @site.slug  %>
 
-    <div class="products">
+      <div class="products">
 
-      <%= render '/templates/admin_products' %>
+        <%= render '/templates/admin_products' %>
 
-    </div>
+      </div>
+
+    <% end %>
 
   </div>
 
