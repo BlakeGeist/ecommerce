@@ -12,8 +12,7 @@ class SitesController < ApplicationController
         return
       end
      @products = Product.where(id: @site.site_products.map(&:product_id)).first(10)
-     @category = Category.new
-     @categories = Category.order(:name).paginate(:page => params[:page], :per_page => 10)
+     @categories = Category.where(id: @site.site_categories.map(&:category_id)).first(10)
      @brands = Brand.first(5)
      @paginated = params[:page]
    end

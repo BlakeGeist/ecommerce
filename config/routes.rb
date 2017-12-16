@@ -34,7 +34,11 @@ Rails.application.routes.draw do
   resources :sites
   resources :admin
   resources :brands
-  resources :categories
+  resources :categories do
+    collection do
+      post :send_category_to_site
+    end
+  end
 
   get '/products/page/:page' => 'products#index'
   get '/categories' => 'categories#index'
