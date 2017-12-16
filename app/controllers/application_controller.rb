@@ -3,11 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   before_action :set_cart
   protect_from_forgery with: :exception
-
-  $brands = Brand.order(:name)
-  $categories = Category.order(:name)
-  $top_categories = Category.first(40)
-
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   protected

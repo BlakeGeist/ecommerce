@@ -1,7 +1,7 @@
 class BrandsController < ApplicationController
   def index
+    @site = Site.find_by(name: request.domain)
     @brands = Brand.all
-
     respond_to do |format|
       format.js
       format.html
@@ -9,6 +9,7 @@ class BrandsController < ApplicationController
    end
 
    def show
+     @site = Site.find_by(name: request.domain)
      @brand = Brand.friendly.find(params[:id])
      @title = "#{@brand.name}"
      @products = Product.joins(:product_details).where(product_details: {name: 'brand'}).where(product_details: {value: @brand.name}).order(:name)
@@ -30,6 +31,13 @@ class BrandsController < ApplicationController
      brand = Brand.create!(name: first_cat_product)
      category.destroy
      redirect_to brand_path(brand)
+   end
+
+   def send_brand_to_site
+     @site = Site.find_by(name: request.domain)
+     @brand = Brand.friendly.find(params[:brand_id])
+     @site.site_brands.find_or_create_by!(brand_id: @brand.id)
+    render :nothing => true
    end
 
    def destroy

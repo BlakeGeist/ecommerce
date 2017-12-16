@@ -33,7 +33,11 @@ Rails.application.routes.draw do
 
   resources :sites
   resources :admin
-  resources :brands
+  resources :brands do
+    collection do
+      post :send_brand_to_site
+    end
+  end
   resources :categories do
     collection do
       post :send_category_to_site

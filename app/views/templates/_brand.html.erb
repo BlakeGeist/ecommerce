@@ -1,0 +1,13 @@
+<div class="brands-brand">
+
+  <div class="brands-brand-name"><%= brand.name %></div>
+
+  <% if brand.logo %>
+
+    <div class="brands-brand-image"><%= image_tag(brand.logo, class: 'brands-brand-image-img') %></div>
+
+  <% end %>
+
+  <div><%= link_to 'Send Brand to Site', {controller: 'brands', action: "send_brand_to_site", brand_id: brand.id, site_id: @site.id}, :method => :post, remote: true %></div>
+
+</div>
