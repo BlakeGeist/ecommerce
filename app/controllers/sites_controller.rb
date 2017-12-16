@@ -1,11 +1,8 @@
 class SitesController < ApplicationController
   skip_before_action :set_site, only: [:create]
-  def index
-    redirect_to root_url
-   end
+  before_action :catch_admin
 
-    def show
-      unless @site
+    def catch_admin
       if current_user && current_user.is_admin
         redirect_to :controller => 'admin', :action => 'index'
       else
@@ -13,7 +10,11 @@ class SitesController < ApplicationController
       end
     end
 
-     return
+    def index
+      redirect_to root_url
+    end
+
+    def show
      @products = Product.where(id: @site.site_products.map(&:product_id))
      @category = Category.new
      @categories = Category.order(:name).paginate(:page => params[:page], :per_page => 10)
