@@ -2,6 +2,8 @@ class CategoriesController < ApplicationController
   include ProductsHelper
 
   def index
+    @site = Site.find_by(name: request.domain)
+
     @categories = Category.order(:name)
     respond_to do |format|
       format.js
@@ -31,6 +33,13 @@ class CategoriesController < ApplicationController
      @category = Category.find(params[:id])
      @category.destroy
      redirect_to :back
+   end
+
+   def send_category_to_site
+     @site = Site.find_by(name: request.domain)
+     @category = Category.friendly.find(params[:category_id])
+     @site.site_categories.find_or_create_by!(category_id: @category.id)
+    render :nothing => true
    end
 
   private
