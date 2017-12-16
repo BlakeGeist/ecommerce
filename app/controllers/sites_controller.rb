@@ -6,7 +6,7 @@ class SitesController < ApplicationController
 
    def show
      unless @site
-       render 'admin/login'
+       redirect_to 'admin/login'
        return
      end
      @products = Product.where(id: @site.site_products.map(&:product_id))
