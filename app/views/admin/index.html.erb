@@ -18,6 +18,8 @@
 
         <td><%= site.name %></td>
 
+        <td><%= site.slug %></td>
+
         <td><%= link_to 'Delete', site_url(site.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
         <td>
@@ -37,5 +39,13 @@
     <% end %>
 
   </table>
+
+  <%= form_for @site do |f| %>
+
+    <%= f.text_field :name %>
+
+    <%= f.submit %>
+
+  <% end %>
 
 </main>

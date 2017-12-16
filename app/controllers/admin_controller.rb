@@ -2,6 +2,7 @@ class AdminController < ApplicationController
   skip_before_action :set_site
   def index
     @sites = Site.order('created_at DESC')
+    @site = Site.new
   end
   def login
     if current_user && current_user.is_admin
