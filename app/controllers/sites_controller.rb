@@ -1,31 +1,24 @@
 class SitesController < ApplicationController
-  skip_before_action :set_site, only: [:create]
-  before_action :catch_admin
-
-    def catch_admin
-      if current_user && current_user.is_admin
-        redirect_to :controller => 'admin', :action => 'index'
-      else
-        redirect_to :controller => 'admin', :action => 'login'
-      end
-    end
-
     def index
       redirect_to root_url
     end
 
     def show
+      if Site.friendly.exists? request.domain
+        @site = Site.friendly.find(request.domain)
+      else
+        if params[:controller] == 'sites'
+          redirect_to :controller => 'admin', :action => 'login'
+        end
+        return
+      end
      @products = Product.where(id: @site.site_products.map(&:product_id))
      @category = Category.new
      @categories = Category.order(:name).paginate(:page => params[:page], :per_page => 10)
      @brands = Brand.first(5)
-
      @paginated = params[:page]
-
      if @paginated
-
        @products = Product.joins(:product_details).uniq.where(product_details: {name: 'active'}).where(product_details: {value: '1'}).order(:name).paginate(:page => params[:page], :per_page => 30)
-
      end
    end
 

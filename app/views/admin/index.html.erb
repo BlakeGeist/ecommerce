@@ -20,6 +20,18 @@
 
         <td><%= link_to 'Delete', site_url(site.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
+        <td>
+
+          <%= form_for site do |f| %>
+
+            <%= f.text_field :name %>
+
+            <%= f.submit %>
+
+          <% end %>
+
+        </td>
+
       </tr>
 
     <% end %>
