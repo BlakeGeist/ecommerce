@@ -1,3 +1,11 @@
+<% if current_user.is_admin %>
+
+  <span class="nav-item"><%= link_to 'Admin', admin_index_path %></span>
+
+  <span class="nav-item">|</span>
+
+<% end %>
+
 <span class="nav-item"><%= current_user.email %></span>
 
 <span class="nav-item">|</span>

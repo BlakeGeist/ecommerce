@@ -2,7 +2,9 @@
 
   <nav>
 
-    <%= render '/templates/user_nav' %>
+    <span><%= link_to 'Admin Home', admin_index_path %></span>
+
+    <span><%= render '/templates/user_nav' %></span>
 
   </nav>
 
@@ -20,9 +22,7 @@
 
           <td><%= link_to site.name, admin_sites_path(site) %></td>
 
-          <td><%= site.slug %></td>
-
-          <td><%= link_to 'Delete', site_url(site.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to site.slug, site_path(site) %></td>
 
           <td>
 
@@ -64,10 +64,11 @@
 
     </table>
 
-    <%= render '/templates/admin_products' %>
+    <%= render '/templates/admin_products' if @site %>
+
+    <%= will_paginate @products  if @site%>
 
   </div>
 
-  <%= will_paginate @products %>
 
 </main>
