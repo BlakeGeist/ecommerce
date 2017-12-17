@@ -3,7 +3,6 @@ class CategoriesController < ApplicationController
 
   def index
     @site = Site.find_by(name: request.domain)
-
     @categories = Category.where(id: @site.site_categories.map(&:category_id))
     @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(10)
     respond_to do |format|
@@ -14,7 +13,6 @@ class CategoriesController < ApplicationController
 
    def show
      @site = Site.find_by(name: request.domain)
-
      @category = Category.friendly.find(params[:id])
      @categories = Category.where(id: @site.site_categories.map(&:category_id)).paginate(:page => params[:page], :per_page => 10)
      @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(10)
