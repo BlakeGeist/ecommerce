@@ -3,6 +3,10 @@ class AdminController < ApplicationController
   def index
     @sites = Site.order('created_at DESC')
     @site = Site.find_by(slug: params[:site])
+    @categories = Category.all
+    @site_categories = Category.where(id: @site.site_categories.map(&:category_id)) if @site
+    @brands = Brand.all
+    @site_brands = Brand.where(id: @site.site_brands.map(&:brand_id)) if @site
     @new_site = Site.new
     @active_products = @site.site_products.map(&:product_id) if @site
     @search = Product.joins(:product_details).where(product_details: {name: 'active'}).where(product_details: {value: '1'}).ransack(params[:q])

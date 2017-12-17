@@ -84,6 +84,58 @@
 
     <hr />
 
+    <% if @site %>
+
+      <div class="admin-body-categories">
+
+        <%= form_tag url_for(:controller => 'categories', :action => 'send_category_to_site'), :method => 'post', remote: true do |f| %>
+
+          Category
+
+          <%= select_tag 'category_id', options_from_collection_for_select(@categories, 'id', 'name') %>
+
+          <%= submit_tag('Add to site') %>
+
+        <% end %>
+
+      </div>
+
+      <div calss="admin-body-categories-sites-categories">
+
+        <% @site_categories.each do |category| %>
+
+          <div><%= category.name %></div>
+
+        <% end %>
+
+      </div>
+
+      <div class="admin-body-brands">
+
+        <%= form_tag url_for(:controller => 'brands', :action => 'send_brand_to_site'), :method => 'post', remote: true do |f| %>
+
+          Brand
+
+          <%= select_tag 'brand_id', options_from_collection_for_select(@brands, 'id', 'name') %>
+
+          <%= submit_tag('Add to site') %>
+
+        <% end %>
+
+      </div>
+
+      <div calss="admin-body-brands-sites-brands">
+
+        <% @site_brands.each do |brand| %>
+
+          <div><%= brand.name %></div>
+
+        <% end %>
+
+      </div>
+
+    <% end %>
+
     <%= render '/templates/admin_products' if @site %>
 
     <%= will_paginate @products  if @site%>
