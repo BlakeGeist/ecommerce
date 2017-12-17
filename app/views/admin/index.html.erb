@@ -20,9 +20,11 @@
 
         <tr>
 
-          <td><%= link_to site.name, admin_sites_path(site) %></td>
+          <td><%= link_to 'View', site_path(site) %></td>
 
-          <td><%= link_to site.slug, site_path(site) %></td>
+          <td><%= link_to 'Site', admin_sites_path(site) %></td>
+
+          <td><%= link_to 'Out Link', 'http://www.' + site.name %> </td>
 
           <td>
 
