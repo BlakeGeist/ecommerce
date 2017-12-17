@@ -50,7 +50,9 @@ class ProductsController < ApplicationController
      @site = Site.find_by(name: request.domain)
      @product = Product.find(params[:product_id])
      @site.site_products.find_or_create_by!(product_id: @product.id)
-    render :nothing => true
+     respond_to do |format|
+       format.js
+     end
    end
 
   private
