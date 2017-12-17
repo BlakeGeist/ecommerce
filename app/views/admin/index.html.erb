@@ -66,6 +66,24 @@
 
     </table>
 
+    <hr />
+
+    <div class="admin-body-search">
+
+      <%= search_form_for @search, url: request.original_url do |f| %>
+
+        <%= f.label :name_cont, " Search" %>
+
+        <%= f.text_field :name_cont %>
+
+        <%= f.submit "submit" %>
+
+      <% end %>
+
+    </div>
+
+    <hr />
+
     <%= render '/templates/admin_products' if @site %>
 
     <%= will_paginate @products  if @site%>
