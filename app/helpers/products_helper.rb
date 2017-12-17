@@ -43,4 +43,10 @@ module ProductsHelper
     end
     return count
   end
+
+  def product_detail(item)
+    if @product.product_details.where(name: item).as_json[0]
+      return @product.product_details.where(name: item).as_json[0]['value']
+    end
+  end
 end

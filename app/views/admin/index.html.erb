@@ -86,6 +86,18 @@
 
     <hr />
 
+    <div calss="admin-body-categories-sites-categories">
+
+      <% @categories.each do |cat| %>
+
+        <div><%=cat.name %> | <%= link_to 'Delete Cat', category_path(id: cat.id), :method => :delete %></div>
+
+      <% end %>
+
+    </div>
+
+    <hr />
+
     <% if @site %>
 
       <div class="admin-body-categories">

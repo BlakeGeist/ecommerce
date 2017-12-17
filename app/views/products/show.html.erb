@@ -2,23 +2,41 @@
 
 <main>
 
-  <div>
+  <div class='product'>
 
-    <h1><%= @product.name %></h1>
+    <div class="product-details">
 
-    <% @product.product_details.each do |detail| %>
+      <h1><%= @product.name %></h1>
 
-      <div><%= detail.name %></div>
+      <h2 class="product-details-item mod-brand"><%= product_detail('brand') %> - <%= product_detail('features') %></h2>
 
-      <div><%= detail.value %></div>
+      <div class="product-details-item mod-short-description"><%= raw product_detail('short_desc') %></div>
 
-    <% end %>
+      <div class="product-details-item mod-description"><%= raw product_detail('description') %></div>
 
-    <%= image_tag(@product.product_details.where(name:'image').as_json[0]['value'], class: 'products-product-image') %>
+      <p><strong>Width/Diameter:</strong> <%= product_detail('width_or_diameter') %> | <strong>Length:</strong> <%= product_detail('length') %> | <strong>Weight:</strong> <%= product_detail('weight') %></p>
 
-    <div class="product-description mod-short"><%= raw @product.product_details.where(name: 'short_desc').as_json[0]['value'] %></div>
 
-    <div class="product-description mod-long"><%= raw @product.product_details.where(name:'description').as_json[0]['value'] %></div>
+      <% @product.product_details.each do |detail| %>
+
+        <div><%= detail.name %></div>
+
+        <div><%= detail.value %></div>
+
+      <% end %>
+    </div>
+
+    <div class="product-images">
+
+      <%= image_tag(product_detail('image'), class: 'products-product-image') %>
+
+    </div>
+
+  </div>
+
+  <div class="product-sidebar">
+
+    sidebar
 
   </div>
 

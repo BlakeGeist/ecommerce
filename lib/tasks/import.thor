@@ -153,9 +153,9 @@ class Import < Thor
 
     products.each do |product|
 
-      if product.product_details.where(:name => 'category').as_json[0]
+      if product.product_details.where(:name => 'recommended_cats').as_json[0]
 
-        category_value = product.product_details.where(:name => 'category').as_json[0]['value']
+        category_value = product.product_details.where(:name => 'recommended_cats').as_json[0]['value']
 
         categories = category_value.split(';')
 
