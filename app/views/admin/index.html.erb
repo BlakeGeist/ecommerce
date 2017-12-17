@@ -136,6 +136,20 @@
 
           <div><%= brand.name %></div>
 
+          <div>
+
+          <%= form_for brand do |f|  %>
+
+            <%= f.text_field :name %>
+
+            <%= f.text_field :logo %>
+
+            <%= f.submit %>
+
+          <% end %>
+
+          </div>
+
         <% end %>
 
       </div>
