@@ -4,7 +4,9 @@ class SitesController < ApplicationController
     end
 
     def show
-      @site = Site.find_by(name: request.domain)
+      if params[:id]
+        @site = Site.find_by(slug: params[:id])
+      end
       unless @site
         if params[:controller] == 'sites'
           redirect_to :controller => 'admin', :action => 'login'
