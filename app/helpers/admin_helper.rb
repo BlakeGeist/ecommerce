@@ -4,4 +4,7 @@ module AdminHelper
       return 'is-active'
     end
   end
+  def admin_sites_path(site)
+    return '/admin/sites/' + site.slug
+  end
 end
