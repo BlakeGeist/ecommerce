@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   get ':site/categories' => 'categories#index'
   get ':site/categories/:category' => 'categories#show'
   get ':site/products/:product' => 'products#show'
-
+  get '/admin/sites/:site' => 'admin#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
