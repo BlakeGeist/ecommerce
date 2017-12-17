@@ -8,14 +8,4 @@
 
   <% end %>
 
-  <div>
-
-    <%= link_to 'Send Cat to Site', {controller: 'categories', action: "send_category_to_site", category_id: category.id, site_id: @site.id}, :method => :post, remote: true %>
-
-    |
-
-    <%= link_to 'Destroy', category_url(category.id),method: :delete, data: { confirm: 'Are you sure?' } %>
-
-  </div>
-
 </div>
