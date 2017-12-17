@@ -6,6 +6,8 @@ class SitesController < ApplicationController
     def show
       if params[:id]
         @site = Site.find_by(slug: params[:id])
+      else
+        @site = Site.find_by(name: request.domain)
       end
       unless @site
         if params[:controller] == 'sites'
