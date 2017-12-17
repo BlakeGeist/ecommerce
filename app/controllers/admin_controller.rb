@@ -5,8 +5,10 @@ class AdminController < ApplicationController
     @site = Site.find_by(slug: params[:site])
     @new_site = Site.new
     @active_products = @site.site_products.map(&:product_id) if @site
-    @products = Product.joins(:product_details).where(product_details: {name: 'active'}).where(product_details: {value: '1'}).order('created_at').paginate(:page => params[:page], :per_page => 30)
+    @search = Product.joins(:product_details).where(product_details: {name: 'active'}).where(product_details: {value: '1'}).ransack(params[:q])
+    @products = @search.result(distinct: true).paginate(:page => params[:page], :per_page => 30)
   end
+
   def login
     if current_user && current_user.is_admin
       redirect_to :controller => 'admin', :action => 'index'
