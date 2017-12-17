@@ -1,3 +1,5 @@
+<%= params %>
+
 <header>
 
   <nav>
@@ -90,6 +92,8 @@
 
         <%= form_tag url_for(:controller => 'categories', :action => 'send_category_to_site'), :method => 'post', remote: true do |f| %>
 
+          <%= hidden_field_tag 'site_id', @site.id %>
+
           Category
 
           <%= select_tag 'category_id', options_from_collection_for_select(@categories, 'id', 'name') %>
@@ -113,6 +117,8 @@
       <div class="admin-body-brands">
 
         <%= form_tag url_for(:controller => 'brands', :action => 'send_brand_to_site'), :method => 'post', remote: true do |f| %>
+
+          <%= hidden_field_tag 'site_id', @site.id %>
 
           Brand
 

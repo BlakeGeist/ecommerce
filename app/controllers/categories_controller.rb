@@ -38,9 +38,8 @@ class CategoriesController < ApplicationController
    end
 
    def send_category_to_site
-     @site = Site.find_by(name: request.domain)
-     @category = Category.friendly.find(params[:category_id])
-     @site.site_categories.find_or_create_by!(category_id: @category.id)
+     @site = Site.find(params[:site_id])
+     @site.site_categories.find_or_create_by!(category_id: params[:category_id])
     render :nothing => true
    end
 

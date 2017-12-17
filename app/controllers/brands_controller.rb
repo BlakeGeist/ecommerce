@@ -38,9 +38,8 @@ class BrandsController < ApplicationController
    end
 
    def send_brand_to_site
-     @site = Site.find_by(name: request.domain)
-     @brand = Brand.friendly.find(params[:brand_id])
-     @site.site_brands.find_or_create_by!(brand_id: @brand.id)
+     @site = Site.find(params[:site_id])
+     @site.site_brands.find_or_create_by!(brand_id: params[:brand_id])
     render :nothing => true
    end
 
