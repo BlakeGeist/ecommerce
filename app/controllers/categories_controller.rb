@@ -37,6 +37,14 @@ class CategoriesController < ApplicationController
      redirect_to :back
    end
 
+   def update
+     @category = Category.find_by(slug: params[:id])
+     if @category.update(category_params)
+       redirect_to :back
+     end
+   end
+
+
    def send_category_to_site
      @site = Site.find(params[:site_id])
      @site.site_categories.find_or_create_by!(category_id: params[:category_id])
@@ -45,7 +53,7 @@ class CategoriesController < ApplicationController
 
   private
     def category_params
-      params.require(:category).permit(:name, :description)
+      params.require(:category).permit(:name, :description, :slug)
     end
 
 end

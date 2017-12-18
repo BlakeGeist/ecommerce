@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   end
   resources :categories do
     collection do
+      put :update
       post :send_category_to_site
     end
   end
