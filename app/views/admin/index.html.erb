@@ -88,11 +88,33 @@
 
     <div calss="admin-body-categories-sites-categories">
 
-      <% @categories.each do |cat| %>
+      <%= @categories.count %>
 
-        <div><%=cat.name %> | <%= link_to 'Delete Cat', category_path(id: cat.id), :method => :delete %></div>
+      <table>
 
-      <% end %>
+        <% @categories.each do |cat| %>
+
+          <tr>
+
+            <%= form_for cat do |f| %>
+
+              <%= f.hidden_field :id, :value => cat.id %>
+
+              <td><%= f.text_field :name %></td>
+
+              <td><%= f.text_field :slug %></td>
+
+              <td><%= f.submit %></td>
+
+            <% end %>
+
+            <td><%= link_to 'Delete Cat', category_path(id: cat.id), :method => :delete %></div></td>
+
+          </tr>
+
+        <% end %>
+
+      </table>
 
     </div>
 

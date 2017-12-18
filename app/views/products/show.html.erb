@@ -16,7 +16,6 @@
 
       <p><strong>Width/Diameter:</strong> <%= product_detail('width_or_diameter') %> | <strong>Length:</strong> <%= product_detail('length') %> | <strong>Weight:</strong> <%= product_detail('weight') %></p>
 
-
       <% @product.product_details.each do |detail| %>
 
         <div><%= detail.name %></div>
