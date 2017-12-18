@@ -10,19 +10,10 @@
 
       <h2 class="product-details-item mod-brand"><%= product_detail('brand') %> - <%= product_detail('features') %></h2>
 
-      <div class="product-details-item mod-short-description"><%= raw product_detail('short_desc') %></div>
-
       <div class="product-details-item mod-description"><%= raw product_detail('description') %></div>
 
       <p><strong>Width/Diameter:</strong> <%= product_detail('width_or_diameter') %> | <strong>Length:</strong> <%= product_detail('length') %> | <strong>Weight:</strong> <%= product_detail('weight') %></p>
 
-      <% @product.product_details.each do |detail| %>
-
-        <div><%= detail.name %></div>
-
-        <div><%= detail.value %></div>
-
-      <% end %>
     </div>
 
     <div class="product-images">
