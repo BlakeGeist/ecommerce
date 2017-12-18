@@ -187,6 +187,19 @@ class Import < Thor
 
   end
 
+  desc 'purge_cat_products', 'brands'
+  def purge_cat_products
+
+    cat_products = Product_categories.all
+
+    cat_products.each do  |product|
+
+      product.destroy
+
+    end
+
+  end
+
   desc 'brands', 'brands'
   def brands
 
