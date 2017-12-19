@@ -16,6 +16,12 @@
 
   <div class="admin-body">
 
+    <% @transactions.each do |transaction| %>
+
+      <div><%= transaction.id %></div>
+
+    <% end %>
+
     <table>
 
       <% @sites.each do |site| %>

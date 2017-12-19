@@ -2,49 +2,69 @@
 
   <div class="cart">
 
-    <% @cart.cart_items.order([:created_at]).each do |item| %>
+    <%= form_tag charges_path do %>
 
-      <div class="cart-item">
+      <% @cart.cart_items.order([:created_at]).each do |item| %>
 
-        <div class="cart-item-detail mod-name"><%= link_to returnProduct(item.product_id).name, product_url(returnProduct(item.product_id)) %></div>
+        <%= hidden_field_tag 'product_id[]', item.product_id %>
 
-        <div class="cart-item-detail mod-image">
+        <div class="cart-item">
 
-          <%= image_tag(returnProduct(item.product_id).product_details.where(name: 'image')[0]['value'], class: 'cart-item-image-img') %>
+          <div class="cart-item-detail mod-name"><%= link_to returnProduct(item.product_id).name, product_url(returnProduct(item.product_id)) %></div>
+
+          <div class="cart-item-detail mod-image">
+
+            <%= image_tag(returnProduct(item.product_id).product_details.where(name: 'image')[0]['value'], class: 'cart-item-image-img') %>
+
+          </div>
+
+          <div class="cart-item-detail mod-quantity">
+
+            <span class="cart-item-quantity-amount">x<%= item.quanitity %></span>
+
+          </div>
+
+          <%= link_to({controller: 'cart_items', action: "create", product_id: item.product_id}, :method => :post, remote: true, class: 'cart-item-add') do %>
+
+            <div class="cart-item-icon mod-add"></div>
+
+          <% end %>
+
+          <%= link_to({controller: 'cart_items', action: "remove_item", product_id: item.product_id, item_id: item.id}, :method => :post, remote: true, class: 'cart-item-add') do %>
+
+            <div class="cart-item-icon mod-remove"></div>
+
+          <% end %>
+
+          <div class="cart-item-detail">$<%= cart_price(item.quanitity, returnProduct(item.product_id).product_details.where(name: 'price')[0]['value']) %></div>
 
         </div>
 
-        <div class="cart-item-detail mod-quantity">
+      <% end %>
 
-          <span class="cart-item-quantity-amount">x<%= item.quanitity %></span>
+      <div class="cart-total">
+        <article>
+          <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+          <% end %>
+          <label class="amount">
+            <span>Amount: $<%= cartTotal() %></span>
+          </label>
+        </article>
 
-        </div>
+        <%= hidden_field_tag 'amount', (cartTotal * 100).to_i %>
 
-        <%= link_to({controller: 'cart_items', action: "create", product_id: item.product_id}, :method => :post, remote: true, class: 'cart-item-add') do %>
-
-          <div class="cart-item-icon mod-add"></div>
-
-        <% end %>
-
-        <%= link_to({controller: 'cart_items', action: "remove_item", product_id: item.product_id, item_id: item.id}, :method => :post, remote: true, class: 'cart-item-add') do %>
-
-          <div class="cart-item-icon mod-remove"></div>
-
-        <% end %>
-
-        <div class="cart-item-detail">$<%= cart_price(item.quanitity, returnProduct(item.product_id).product_details.where(name: 'price')[0]['value']) %></div>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="Purchase Items"
+                data-amount="<%= (cartTotal * 100).to_i %>"
+                data-locale="auto"></script>
 
       </div>
 
     <% end %>
-
-    <div class="cart-total">
-
-      Total: $<%= cartTotal() %></span>
-
-      <%= link_to 'Checkout', '', class: 'button checkout-button' %>
-
-    </div>
 
   </div>
 

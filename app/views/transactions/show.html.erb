@@ -1,0 +1,15 @@
+<div class="">
+
+  <div>Email: <%= @transaction.email %></div>
+
+  <div>Price: <%= number_to_currency(@transaction.amount.to_d * 0.01) %></div>
+
+  <div>Cart_id: <%= @transaction.customer %></div>
+
+  <div>Description: <%= @transaction.description %></div>
+
+  <div>Source: <%= @transaction.source %></div>
+
+  <%= render '/templates/products' %>
+
+</div>

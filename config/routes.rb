@@ -31,8 +31,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :transactions
   resources :sites
   resources :admin
+  resources :charges do
+    collection do
+      post :create
+    end
+  end
+
   resources :brands do
     collection do
       post :send_brand_to_site

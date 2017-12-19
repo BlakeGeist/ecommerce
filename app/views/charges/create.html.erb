@@ -1,0 +1,13 @@
+<h2>Thanks, you paid <strong><%= number_to_currency(@amount.to_d * 0.01) %></strong>!</h2>
+
+<% @products.each do |product_id| %>
+
+  <div class="cart-item-detail mod-name"><%= link_to returnProduct(product_id).name, product_url(returnProduct(product_id)) %></div>
+
+  <div class="cart-item-detail mod-image">
+
+    <%= image_tag(returnProduct(product_id).product_details.where(name: 'image')[0]['value'], class: 'cart-item-image-img') %>
+
+  </div>
+
+<% end %>
