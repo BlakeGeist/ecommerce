@@ -1,0 +1,16 @@
+# Fill in your AWS Access Key ID and Secret Access Key
+# http://aws.amazon.com/security-credentials
+access_key_id: AKIAILAEV3FBYPBMQZEQ
+secret_access_key: liHQ9vlye7xQkGYnRVNnt3S2ZV5AhoaW697XO1n3
+
+development:
+  access_key_id: AKIAILAEV3FBYPBMQZEQ
+  secret_access_key: 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
+  bucket: ecommerce.bucket
+  simple_db_consistent_reads: false
+  s3_region: us-west-2
+production:
+  access_key_id: AKIAILAEV3FBYPBMQZEQ
+  secret_access_key: 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
+  bucket: ecommerce.bucket
+  simple_db_consistent_reads: false

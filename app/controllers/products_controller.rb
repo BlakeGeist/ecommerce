@@ -9,13 +9,10 @@ class ProductsController < ApplicationController
     @category = Category.new
     @categories = Category.order(:name).paginate(:page => params[:page], :per_page => 10)
     @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(10)
-
     @paginated = params[:page]
-
     if @paginated
-      @products = Product.where(id: @site.site_products.map(&:product_id)).paginate(:page => params[:page], :per_page => 30)
+      @products = Product.where(id: @site.site_products.map(&:product_id)).paginate(:page => params[:page], :per_page => 50)
     end
-
     respond_to do |format|
       format.js
       format.html

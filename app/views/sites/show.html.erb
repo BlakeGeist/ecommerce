@@ -1,5 +1,11 @@
 <%= render 'templates/header' %>
 
+  <% @product.product_photos.each do |image| %>
+
+    <%= image.image %>
+
+  <% end %>
+
 <main>
 
   <div class="carousel">
@@ -50,6 +56,7 @@
 
   </section>
 
+<!--
   <aside class="categories-sidebar">
 
     <h3 class="categories-sidebar-heading"><%= link_to 'Categories', categories_url %></h3>
@@ -63,6 +70,8 @@
     <%= link_to 'View All Categories', categories_url, class: 'categories-sidebar-item' %>
 
   </aside>
+
+-->
 
 </main>
 

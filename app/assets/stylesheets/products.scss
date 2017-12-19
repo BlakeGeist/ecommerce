@@ -1,8 +1,11 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+main {
+  justify-content: space-between;
+}
 .main {
-  flex: 0 1 1150px;
+  //flex: 0 1 81%;
 }
 .categories-sidebar {
   -webkit-box-shadow: 1px 2px 7px 0px #b7b7b7;
@@ -11,29 +14,35 @@
   background-color: #fff;
   border-radius: 5px;
   display: flex;
-  flex: 1 1 auto;
+  flex: 0 1 17%;
   flex-direction: column;
   font-size: 14px;
-  margin: 78px 0 0 25px;
+  margin-top: 10px;
   padding: 5px;
   display: inherit;
   height: max-content;
 }
-.categories-sidebar-heading {
-  border-bottom: 1px dotted #b4b4b4;
-  font-size: 16px;
-  line-height: 40px;
-  margin: 0;
-  padding: 0;
-}
-.categories-sidebar-item {
-  border-bottom: 1px dotted #b4b4b4;
-  flex: 0 1 35px;
-  line-height: 35px;
-  &:last-child {
-    border: none;
+  .categories-sidebar-heading {
+    border-bottom: 1px dotted #b4b4b4;
+    font-size: 16px;
+    line-height: 40px;
+    margin: 0;
+    padding: 0;
   }
-}
+  .categories-sidebar-item {
+    border-bottom: 1px dotted #b4b4b4;
+    display: -webkit-box;
+    flex: 0 1 35px;
+    line-height: 35px;
+    height: 35px;
+    overflow: hidden;
+    word-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    &:last-child {
+      border: none;
+    }
+  }
 .products {
   display: flex;
   flex-wrap: wrap;
