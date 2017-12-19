@@ -16,11 +16,33 @@
 
   <div class="admin-body">
 
-    <% @transactions.each do |transaction| %>
+    <table>
 
-      <div><%= transaction.id %></div>
+      <tr>
 
-    <% end %>
+        <th>Id</th>
+
+        <th>Amount</th>
+
+        <th>Link</th>
+
+      </tr>
+
+      <% @transactions.each do |transaction| %>
+
+        <tr>
+
+          <td><%= transaction.id %></td>
+
+          <td><%= number_to_currency(transaction.amount.to_d * 0.01) %></td>
+
+          <td><%= link_to "Transaction", transaction_path(transaction) %></td>
+
+        </tr>
+
+      <% end %>
+
+    </table>
 
     <table>
 

@@ -15,9 +15,11 @@ class SitesController < ApplicationController
         end
         return
       end
-     @products = Product.where(id: @site.site_products.map(&:product_id)).first(10)
-     @categories = Category.where(id: @site.site_categories.map(&:category_id)).first(10)
-     @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(10)
+     @products = Product.where(id: @site.site_products.map(&:product_id)).first(12)
+     @categories = Category.where(id: @site.site_categories.map(&:category_id)).first(12)
+     @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(12)
+
+     @pr = Product.joins(:product_details).where(product_details: {name: 'active'}).where(product_details: {value: 1})
 
      @product = Product.last
    end
