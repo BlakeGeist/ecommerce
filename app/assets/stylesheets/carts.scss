@@ -76,6 +76,17 @@
       }
   .cart-total {
     text-align: right;
+    form {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    article {
+      margin-right: 15px;
+    }
+    .stripe-button-el {
+      max-height: 30px;
+    }
   }
 
   .button {

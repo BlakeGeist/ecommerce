@@ -32,6 +32,9 @@ gem 'certified'
 #seach gem
 gem 'ransack'
 
+#payment processing
+gem 'stripe'
+
 #ebay intergration
 gem 'omniauth-ebay'
 gem 'ebayr'
