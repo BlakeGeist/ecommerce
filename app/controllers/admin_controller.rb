@@ -11,6 +11,7 @@ class AdminController < ApplicationController
     @active_products = @site.site_products.map(&:product_id) if @site
     @search = Product.joins(:product_details).where(product_details: {name: 'active'}).where(product_details: {value: '1'}).ransack(params[:q])
     @products = @search.result(distinct: true).paginate(:page => params[:page], :per_page => 30)
+    @transactions = Transaction.all.order('created_at DESC')
   end
 
   def login

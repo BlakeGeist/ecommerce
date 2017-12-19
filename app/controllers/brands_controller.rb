@@ -2,7 +2,7 @@ class BrandsController < ApplicationController
   def index
     @site = Site.find_by(name: request.domain)
     @categories = Category.where(id: @site.site_categories.map(&:category_id)).paginate(:page => params[:page], :per_page => 10)
-    @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(10)
+    @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).paginate(:page => params[:page], :per_page => 48)
     @brands = Brand.all
     respond_to do |format|
       format.js
@@ -16,7 +16,7 @@ class BrandsController < ApplicationController
      @categories = Category.where(id: @site.site_categories.map(&:category_id)).paginate(:page => params[:page], :per_page => 10)
      @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(10)
      @title = "#{@brand.name}"
-     @products = Product.joins(:product_details).where(product_details: {name: 'brand'}).where(product_details: {value: @brand.name}).order(:name).paginate(:page => params[:page], :per_page => 10)
+     @products = Product.joins(:product_details).where(product_details: {name: 'brand'}).where(product_details: {value: @brand.name}).order(:name).paginate(:page => params[:page], :per_page => 48)
    end
 
    def create
