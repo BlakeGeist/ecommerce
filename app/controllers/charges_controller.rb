@@ -30,6 +30,7 @@ class ChargesController < ApplicationController
         :product_ids => @products
       )
       if transaction.save
+        @cart.destroy
         redirect_to transaction_path(transaction)
       end
 
