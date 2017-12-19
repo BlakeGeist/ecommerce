@@ -2,9 +2,9 @@
 
   <%= link_to product.name, product_url(product), class: 'products-product-heading' %>
 
-  <% if product.product_details.where(name: 'image')[0] %>
+  <% if product.product_photos.first %>
 
-    <%= link_to image_tag(product.product_details.where(name: 'image')[0]['value'], class: 'products-product-image'), product_url(product), class: 'products-product-link' %>
+    <%= link_to image_tag(product.product_photos.first.image.url(:medium), class: 'products-product-image'), product_url(product), class: 'products-product-link' %>
 
   <% end %>
 

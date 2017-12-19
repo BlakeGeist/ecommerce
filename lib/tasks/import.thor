@@ -1,7 +1,69 @@
 class Import < Thor
 
+  desc 'test_photo', 'test photo import'
+  def test_photo
+
+    require File.expand_path('config/environment.rb')
+
+    require 'rubygems'
+
+    require 'nokogiri'
+
+    require 'open-uri'
+
+    require 'aws-sdk'
+
+    require 'csv'
+
+    require 'json'
+
+		#require 'mechanize'
+
+		require 'watir'
+
+    #get the xml of products
+		doc  = Nokogiri::XML(open("http://www.sextoydistributing.com/feeds/geistdropshipping/anths30170/XML_ALL_IMAGES.xml"))
+
+    @items = doc.css('items item')
+
+    @items.each do |item|
+
+      #get the name of the product
+      product_model = item.css('model').text
+
+      product = Product.joins(:product_details).where(product_details: {name: 'model'}).where(product_details: {value: product_model}).uniq
+
+      if product.as_json[0]
+
+        if product.as_json[0]['active'] == 1
+
+          product = Product.find(product.as_json[0]['id'])
+
+          images = item.css('ProductImage')
+
+          images.each do |image|
+
+            if image['filepath'].to_s.chars.length > 10
+
+              product.product_photos.find_or_create_by!(:image => image['filepath'].to_s)
+
+            end
+
+          end
+
+        end
+
+      end
+
+    end
+
+
+  end
+
   desc "cats_to_brands", "scrape the mugshots on the following site"
   def cats_to_brands
+
+
 
     require File.expand_path('config/environment.rb')
 

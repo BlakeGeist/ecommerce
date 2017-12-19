@@ -6,6 +6,18 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  Paperclip.options[:command_path] = "C:/imageM6"
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => 'ecommerce.bucket',
+      :access_key_id => 'AKIAILAEV3FBYPBMQZEQ',
+      :secret_access_key => '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',
+      :s3_region => 'us-west-2'
+    }
+  }
+
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Do not eager load code on boot.

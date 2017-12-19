@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :products do
     resources :product_details
     resources :product_categories
+    resources :product_photos
     collection do
       post :send_product_to_site
     end

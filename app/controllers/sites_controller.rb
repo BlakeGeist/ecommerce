@@ -18,6 +18,8 @@ class SitesController < ApplicationController
      @products = Product.where(id: @site.site_products.map(&:product_id)).first(10)
      @categories = Category.where(id: @site.site_categories.map(&:category_id)).first(10)
      @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(10)
+
+     @product = Product.last
    end
 
    def create
