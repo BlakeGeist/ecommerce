@@ -188,7 +188,10 @@ main {
     padding-left: 25px;
   }
 }
-
+.cart-item-detail.mod-price {
+  flex: 0 0 70px;
+  text-align: right;
+}
 @media (max-width: 760px) {
   header {
     padding: 0 15px;
@@ -220,9 +223,5 @@ main {
   }
     .cart-total {
       justify-content: space-around;
-    }
-    .cart-item-detail.mod-price {
-      flex: 0 0 70px;
-      text-align: right;
     }
 }
