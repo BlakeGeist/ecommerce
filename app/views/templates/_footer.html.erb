@@ -1,50 +1,52 @@
-<footer>
+  <footer>
 
-  <div class="footer-body">
+    <div class="footer-body">
 
-    <div class="footer-item mod-footer-nav">
+      <div class="footer-item mod-footer-nav">
 
-      <div class="footer-item-heading">Information</div>
+        <div class="footer-item-heading">Information</div>
 
-      <%= link_to 'Home', root_url, class: 'footer-nav-item' %>
+        <%= link_to 'Home', root_url, class: 'footer-nav-item' %>
 
-      <%= link_to 'About', root_url, class: 'footer-nav-item' %>
+        <%= link_to 'About', root_url, class: 'footer-nav-item' %>
 
-      <%= link_to 'Customer Service', root_url, class: 'footer-nav-item' %>
+        <%= link_to 'Customer Service', root_url, class: 'footer-nav-item' %>
 
-      <%= link_to 'Contact Us', root_url, class: 'footer-nav-item' %>
+        <%= link_to 'Contact Us', root_url, class: 'footer-nav-item' %>
 
-      <%= link_to 'Privacy Policy', root_url, class: 'footer-nav-item' %>
+        <%= link_to 'Privacy Policy', root_url, class: 'footer-nav-item' %>
 
-      <%= link_to 'Terms and Agreements', root_url, class: 'footer-nav-item' %>
+        <%= link_to 'Terms and Agreements', root_url, class: 'footer-nav-item' %>
 
-      <%= link_to 'Site Map', root_url, class: 'footer-nav-item' %>
+        <%= link_to 'Site Map', root_url, class: 'footer-nav-item' %>
 
-    </div>
+      </div>
 
-    <div class="footer-item mod-footer-nav">
+      <div class="footer-item mod-footer-nav">
 
-      <div class="footer-item-heading">Account</div>
+        <div class="footer-item-heading">Account</div>
 
-      <%= link_to 'Sign In', root_url, class: 'footer-nav-item' %>
+        <%= link_to 'Sign In', root_url, class: 'footer-nav-item' %>
 
-      <%= link_to 'View Cart', root_url, class: 'footer-nav-item' %>
+        <%= link_to 'View Cart', root_url, class: 'footer-nav-item' %>
 
-    </div>
+      </div>
 
-    <div class="footer-item mod-newsletter">
+      <div class="footer-item mod-newsletter">
 
-      <div class="footer-item-heading">Newsletter</div>
+        <div class="footer-item-heading">Newsletter</div>
 
-      <div class="footer-item-form">
+        <div class="footer-item-form">
 
-        <div class="footer-item-form-heading">Sign Up for Our Newsletter:</div>
+          <div class="footer-item-form-heading">Sign Up for Our Newsletter:</div>
 
-        <div class="footer-item-form-inputs">
+          <div class="footer-item-form-inputs">
 
-          <input class="footer-item-form-inputs-input mod-email" name="email" placeholder="Join the Newsletter" type="email" />
+            <input class="footer-item-form-inputs-input mod-email" name="email" placeholder="Join the Newsletter" type="email" />
 
-          <input class="footer-item-form-inputs-input mod-submit" name="submit" type="submit" />
+            <input class="footer-item-form-inputs-input mod-submit" name="submit" type="submit" />
+
+          </div>
 
         </div>
 
@@ -52,16 +54,16 @@
 
     </div>
 
-  </div>
+    <div class="footer-footer">
 
-  <div class="footer-footer">
+      <div class="footer-footer-body">
 
-    <div class="footer-footer-body">
+        © <%= Time.current.year %> Adult Products and Toys. All Rights Reserved.
 
-      © <%= Time.current.year %> Adult Products and Toys. All Rights Reserved.
+      </div>
 
     </div>
 
-  </div>
+  </footer>
 
-</footer>
+</body>

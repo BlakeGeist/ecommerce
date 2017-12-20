@@ -1,91 +1,93 @@
-<header>
+<body class="<%= params['controller'] %>-page <%= params['controller'] + '-' + params['action'] %>-page">
 
-  <nav class="header-nav">
+  <header>
 
-    <div class="nav-left">
+    <nav class="header-nav">
 
-      <%= link_to 'Home', root_url %>
+      <div class="nav-left">
 
-      <span class="nav-item">|</span>
-
-      <%= link_to 'Categories', categories_url, data: {toggle: 'categories-mega-menu'} %>
-
-      <span class="nav-item">|</span>
-
-      <%= link_to 'Brands', brands_url, data: {toggle: 'brands-mega-menu'} %>
-
-      <span class="nav-item">|</span>
-
-      <%= link_to 'About Us', root_url %>
-
-      <span class="nav-item">|</span>
-
-      <%= link_to 'Contact Us', root_url %>
-
-    </div>
-
-    <div class="nav-right">
-
-      <% if current_user %>
-
-        <%= render '/templates/user_nav' %>
-
-      <% else %>
-
-        <span class="nav-item"><%= link_to "Sign Up", new_user_registration_path %></span>
+        <%= link_to 'Home', root_url %>
 
         <span class="nav-item">|</span>
 
-        <span class="nav-item"><%= link_to "Login", new_user_session_path %></span>
-
-      <% end %>
-
-      <div class="nav-item-right mod-cart">
+        <%= link_to 'Categories', categories_url, data: {toggle: 'categories-mega-menu'} %>
 
         <span class="nav-item">|</span>
 
-        <%= link_to 'Cart', root_url, data: {toggle: 'cart'} %>
+        <%= link_to 'Brands', brands_url, data: {toggle: 'brands-mega-menu'} %>
 
-        (<span data-cart-count><%= cartCount() %></span>)
+        <span class="nav-item">|</span>
 
-       <div class="cart-container" data-cart-target data-target="cart">
+        <%= link_to 'About Us', root_url %>
 
-         <% if @cart && @cart.cart_items.count > 0 %>
+        <span class="nav-item">|</span>
 
-           <%= render '/templates/cart' %>
+        <%= link_to 'Contact Us', root_url %>
 
-         <% end %>
+      </div>
+
+      <div class="nav-right">
+
+        <% if current_user %>
+
+          <%= render '/templates/user_nav' %>
+
+        <% else %>
+
+          <span class="nav-item"><%= link_to "Sign Up", new_user_registration_path %></span>
+
+          <span class="nav-item">|</span>
+
+          <span class="nav-item"><%= link_to "Login", new_user_session_path %></span>
+
+        <% end %>
+
+        <div class="nav-item-right mod-cart">
+
+          <span class="nav-item">|</span>
+
+          <%= link_to 'Cart', root_url, data: {toggle: 'cart'} %>
+
+          (<span data-cart-count><%= cartCount() %></span>)
+
+         <div class="cart-container" data-cart-target data-target="cart">
+
+           <% if @cart && @cart.cart_items.count > 0 %>
+
+             <%= render '/templates/cart' %>
+
+           <% end %>
+
+         </div>
 
        </div>
 
-     </div>
+      </div>
+
+    </nav>
+
+    <div class="header-nav-item mod-categories-mega" data-target="categories-mega-menu">
+
+      <%= link_to 'View All Categories...', categories_url, class: 'categories-mega-item' %>
+
+      <% @categories.each do |category| %>
+
+        <%= link_to category.name, category_url(category), class: 'categories-mega-item' %>
+
+      <% end %>
 
     </div>
 
-  </nav>
+    <div class="header-nav-item mod-categories-mega" data-target="brands-mega-menu">
 
-  <div class="header-nav-item mod-categories-mega" data-target="categories-mega-menu">
+      <%= link_to 'View All Brands...', brands_url, class: 'categories-mega-item' %>
 
-    <%= link_to 'View All Categories...', categories_url, class: 'categories-mega-item' %>
+      <% @brands.each do |brand| %>
 
-    <% @categories.each do |category| %>
+        <%= link_to brand.name, brand_url(brand), class: 'categories-mega-item' %>
 
-      <%= link_to category.name, category_url(category), class: 'categories-mega-item' %>
+      <% end %>
 
-    <% end %>
+    </div>
 
-  </div>
-
-  <div class="header-nav-item mod-categories-mega" data-target="brands-mega-menu">
-
-    <%= link_to 'View All Brands...', brands_url, class: 'categories-mega-item' %>
-
-    <% @brands.each do |brand| %>
-
-      <%= link_to brand.name, brand_url(brand), class: 'categories-mega-item' %>
-
-    <% end %>
-
-  </div>
-
-</header>
+  </header>
