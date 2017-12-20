@@ -12,11 +12,15 @@
 
           <div class="cart-item-detail mod-name"><%= link_to returnProduct(item.product_id).name, product_url(returnProduct(item.product_id)) %></div>
 
-          <div class="cart-item-detail mod-image">
+          <% if returnProduct(item.product_id).product_photos.first %>
 
-            <%= image_tag(returnProduct(item.product_id).product_details.where(name: 'image')[0]['value'], class: 'cart-item-image-img') %>
+            <div class="cart-item-detail mod-image">
 
-          </div>
+              <%= image_tag(returnProduct(item.product_id).product_photos.first.image.url(:thumb), class: 'cart-item-image-img') %>
+
+            </div>
+
+          <% end %>
 
           <div class="cart-item-detail mod-quantity">
 
