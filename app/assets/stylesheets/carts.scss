@@ -14,12 +14,12 @@
   border: 1px solid #bbb;
   border-radius: 5px;
   display: none;
+  min-width: 530px;
   overflow: hidden;
   padding: 5px 10px 0;
   position: absolute;
   right: 0;
   width: 100%;
-  min-width: 530px;
 }
   .cart-item {
     border-bottom: 1px dashed #c7c7c7;
@@ -47,24 +47,24 @@
           display: flex;
         }
         &.mod-name {
+          display: -webkit-box;
           flex: 1 1;
           min-height: 3rem;
           overflow: hidden;
           word-wrap: break-word;
           -webkit-line-clamp: 1;
           -webkit-box-orient: vertical;
-          display: -webkit-box;
         }
       }
       .cart-item-icon {
         background: url(https://s.cdpn.io/6035/glyphicons-halflings-white.png) no-repeat;
         border-radius: 3px;
         display: inline-block;
-        width: 19px;
         height: 17px;
-        margin-top: 1px;
         line-height: 14px;
+        margin-top: 1px;
         vertical-align: text-top;
+        width: 19px;
         &.mod-add {
           background-color: #2371a5;
           background-position: -405px -95px;
@@ -75,6 +75,9 @@
         }
       }
   .cart-total {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
     text-align: right;
     form {
       display: flex;
