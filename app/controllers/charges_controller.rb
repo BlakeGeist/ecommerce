@@ -20,6 +20,7 @@ class ChargesController < ApplicationController
     )
 
     if charge.save
+      @site = Site.find_by(name: request.domain)
       transaction = Transaction.create(
         :email => params[:stripeEmail],
         :source  => params[:stripeToken],
@@ -27,6 +28,7 @@ class ChargesController < ApplicationController
         :amount      => @amount,
         :description => 'Rails Stripe customer',
         :currency    => 'usd',
+        :site_id    => @site.id,
         :product_ids => @products
       )
       if transaction.save
