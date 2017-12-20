@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
     @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(10)
     @paginated = params[:page]
     if @paginated
-      @products = Product.where(id: @site.site_products.map(&:product_id)).paginate(:page => params[:page], :per_page => 50)
+      @products = Product.where(id: @site.site_products.map(&:product_id)).paginate(:page => params[:page], :per_page => 48)
     end
     respond_to do |format|
       format.js

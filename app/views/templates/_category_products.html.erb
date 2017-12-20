@@ -4,7 +4,7 @@
 
   <% if product && product.product_photos.first %>
 
-    <%= link_to image_tag(product.product_photos.first.image.url(:medium), class: 'products-product-image'), product_url(product), class: 'products-product-link' %>
+    <%= link_to image_tag(product.product_photos.first.image.url(:medium), class: 'products-product-image'), category_url(category), class: 'products-product-link' %>
 
   <% end %>
 
