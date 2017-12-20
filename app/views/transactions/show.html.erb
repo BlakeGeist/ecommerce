@@ -1,5 +1,7 @@
 <div class="">
 
+  <div>Site: <%= site_by_id(@transaction.site_id).name %></div>
+
   <div>Email: <%= @transaction.email %></div>
 
   <div>Price: <%= number_to_currency(@transaction.amount.to_d * 0.01) %></div>
