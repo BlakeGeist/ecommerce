@@ -3,7 +3,6 @@ class BrandsController < ApplicationController
     @site = Site.find_by(name: request.domain)
     @categories = Category.where(id: @site.site_categories.map(&:category_id)).paginate(:page => params[:page], :per_page => 10)
     @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).paginate(:page => params[:page], :per_page => 48)
-    @brands = Brand.all
     respond_to do |format|
       format.js
       format.html
