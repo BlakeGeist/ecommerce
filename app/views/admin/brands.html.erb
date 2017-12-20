@@ -1,0 +1,61 @@
+<%#= params %>
+
+<header>
+
+  <nav>
+
+    <span><%= link_to 'Admin Home', admin_index_path %></span>
+
+    <span><%= render '/templates/user_nav' %></span>
+
+  </nav>
+
+</header>
+
+<main>
+
+  <div class="admin-body">
+
+      <div class="admin-body-brands">
+
+        <%= form_tag url_for(:controller => 'brands', :action => 'send_brand_to_site'), :method => 'post', remote: true do |f| %>
+
+          <%= hidden_field_tag 'site_id', @site.id %>
+
+          Brand
+
+          <%= select_tag 'brand_id', options_from_collection_for_select(@brands, 'id', 'name') %>
+
+          <%= submit_tag('Add to site') %>
+
+        <% end %>
+
+      </div>
+
+      <div calss="admin-body-brands-sites-brands">
+
+        <% @site_brands.each do |brand| %>
+
+          <div><%= brand.name %></div>
+
+          <div>
+
+          <%= form_for brand do |f|  %>
+
+            <%= f.text_field :name %>
+
+            <%= f.text_field :logo %>
+
+            <%= f.submit %>
+
+          <% end %>
+
+          </div>
+
+        <% end %>
+
+      </div>
+
+  </div>
+
+</main>

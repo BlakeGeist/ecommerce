@@ -62,6 +62,8 @@ Rails.application.routes.draw do
   get ':site/categories/:category' => 'categories#show'
   get ':site/products/:product' => 'products#show'
   get '/admin/sites/:site' => 'admin#index'
+  get '/admin/sites/:site/brands' => 'admin#brands'
+  get '/admin/sites/:site/categories' => 'admin#categories'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

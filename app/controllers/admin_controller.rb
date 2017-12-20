@@ -14,6 +14,18 @@ class AdminController < ApplicationController
     @transactions = Transaction.all.order('created_at DESC')
   end
 
+  def brands
+    @brands = Brand.order(:name)
+    @site = Site.find_by(slug: params[:site])
+    @site_brands = Brand.where(id: @site.site_brands.map(&:brand_id)).order(:name) if @site
+  end
+
+  def categories
+    @site = Site.find_by(slug: params[:site])
+    @categories = Category.order(:name)
+    @site_categories = Category.where(id: @site.site_categories.map(&:category_id)).order(:name) if @site
+  end
+
   def login
     if current_user && current_user.is_admin
       redirect_to :controller => 'admin', :action => 'index'
