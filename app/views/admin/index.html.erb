@@ -14,6 +14,16 @@
 
 <main>
 
+<% if @site %>
+
+  <%= link_to 'Brands', admin_brands_path(@site) %>
+
+  | <%= link_to 'Categories', admin_categories_path(@site) %>
+
+<% end %>
+
+
+
   <div class="admin-body">
 
     <table>
@@ -95,132 +105,6 @@
       </tr>
 
     </table>
-
-    <hr />
-
-    <div class="admin-body-search">
-
-      <%= search_form_for @search, url: request.original_url do |f| %>
-
-        <%= f.label :name_cont, " Search" %>
-
-        <%= f.text_field :name_cont %>
-
-        <%= f.submit "submit" %>
-
-      <% end %>
-
-    </div>
-
-    <hr />
-
-    <div calss="admin-body-categories-sites-categories">
-
-      <%= @categories.count %>
-
-      <table>
-
-        <% @categories.each do |cat| %>
-
-          <tr>
-
-            <%= form_for cat do |f| %>
-
-              <%= f.hidden_field :id, :value => cat.id %>
-
-              <td><%= f.text_field :name %></td>
-
-              <td><%= f.text_field :slug %></td>
-
-              <td><%= f.submit %></td>
-
-            <% end %>
-
-            <td><%= link_to 'Delete Cat', category_path(id: cat.id), :method => :delete %></div></td>
-
-          </tr>
-
-        <% end %>
-
-      </table>
-
-    </div>
-
-    <hr />
-
-    <% if @site %>
-
-      <div class="admin-body-categories">
-
-        <%= form_tag url_for(:controller => 'categories', :action => 'send_category_to_site'), :method => 'post', remote: true do |f| %>
-
-          <%= hidden_field_tag 'site_id', @site.id %>
-
-          Category
-
-          <%= select_tag 'category_id', options_from_collection_for_select(@categories, 'id', 'name') %>
-
-          <%= submit_tag('Add to site') %>
-
-        <% end %>
-
-      </div>
-
-      <div calss="admin-body-categories-sites-categories">
-
-        <% @site_categories.each do |category| %>
-
-          <div><%= category.name %></div>
-
-        <% end %>
-
-      </div>
-
-      <div class="admin-body-brands">
-
-        <%= form_tag url_for(:controller => 'brands', :action => 'send_brand_to_site'), :method => 'post', remote: true do |f| %>
-
-          <%= hidden_field_tag 'site_id', @site.id %>
-
-          Brand
-
-          <%= select_tag 'brand_id', options_from_collection_for_select(@brands, 'id', 'name') %>
-
-          <%= submit_tag('Add to site') %>
-
-        <% end %>
-
-      </div>
-
-      <div calss="admin-body-brands-sites-brands">
-
-        <% @site_brands.each do |brand| %>
-
-          <div><%= brand.name %></div>
-
-          <div>
-
-          <%= form_for brand do |f|  %>
-
-            <%= f.text_field :name %>
-
-            <%= f.text_field :logo %>
-
-            <%= f.submit %>
-
-          <% end %>
-
-          </div>
-
-        <% end %>
-
-      </div>
-
-    <% end %>
-
-    <%= render '/templates/admin_products' if @site %>
-
-    <%= will_paginate @products  if @site%>
 
   </div>
 
