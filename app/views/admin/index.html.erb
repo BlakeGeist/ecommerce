@@ -1,112 +1,115 @@
-<%#= params %>
+<body class="<%= params['controller'] %>-page <%= params['controller'] + '-' + params['action'] %>-page">
 
-<header>
+  <%#= params %>
 
-  <nav>
+  <header>
 
-    <span><%= link_to 'Admin Home', admin_index_path %></span>
+    <nav>
 
-    <span><%= render '/templates/user_nav' %></span>
+      <span><%= link_to 'Admin Home', admin_index_path %></span>
 
-  </nav>
+      <span><%= render '/templates/user_nav' %></span>
 
-</header>
+    </nav>
 
-<main>
+  </header>
 
-<% if @site %>
+  <main>
 
-  <%= link_to 'Brands', admin_brands_path(@site) %>
+  <% if @site %>
 
-  | <%= link_to 'Categories', admin_categories_path(@site) %>
+    <%= link_to 'Brands', admin_brands_path(@site) %>
 
-<% end %>
+    | <%= link_to 'Categories', admin_categories_path(@site) %>
+
+  <% end %>
 
 
 
-  <div class="admin-body">
+    <div class="admin-body">
 
-    <table>
-
-      <tr>
-
-        <th>Id</th>
-
-        <th>Amount</th>
-
-        <th>Link</th>
-
-      </tr>
-
-      <% @transactions.each do |transaction| %>
+      <table>
 
         <tr>
 
-          <td><%= transaction.id %></td>
+          <th>Id</th>
 
-          <td><%= number_to_currency(transaction.amount.to_d * 0.01) %></td>
+          <th>Amount</th>
 
-          <td><%= link_to "Transaction", transaction_path(transaction) %></td>
+          <th>Link</th>
 
         </tr>
 
-      <% end %>
+        <% @transactions.each do |transaction| %>
 
-    </table>
+          <tr>
 
-    <table>
+            <td><%= transaction.id %></td>
 
-      <% @sites.each do |site| %>
+            <td><%= number_to_currency(transaction.amount.to_d * 0.01) %></td>
+
+            <td><%= link_to "Transaction", transaction_path(transaction) %></td>
+
+          </tr>
+
+        <% end %>
+
+      </table>
+
+      <table>
+
+        <% @sites.each do |site| %>
+
+          <tr>
+
+            <td><%= link_to 'View Site', site_path(site) %> </td>
+
+            <td><%= link_to 'Edit Site', admin_sites_path(site) %> </td>
+
+            <td><%= link_to 'Out Link', 'http://www.' + site.name %></td>
+
+            <td>
+
+              <%= form_for site do |f| %>
+
+                <%= f.text_field :name %>
+
+                <%= f.submit %>
+
+              <% end %>
+
+            </td>
+
+          </tr>
+
+        <% end %>
 
         <tr>
 
-          <td><%= link_to 'View', site_path(site) %></td>
+          <td></td>
 
-          <td><%= link_to 'Site', admin_sites_path(site) %></td>
+          <td></td>
 
-          <td><%= link_to 'Out Link', 'http://www.' + site.name %> </td>
+          <td>New Site</td>
 
-          <td>
+          <%= form_for @new_site do |f| %>
 
-            <%= form_for site do |f| %>
+            <td>
 
               <%= f.text_field :name %>
 
               <%= f.submit %>
 
-            <% end %>
+            </td>
 
-          </td>
+          <% end %>
 
         </tr>
 
-      <% end %>
+      </table>
 
-      <tr>
+    </div>
 
-        <td></td>
+  </main>
 
-        <td></td>
-
-        <td>New Site</td>
-
-        <%= form_for @new_site do |f| %>
-
-          <td>
-
-            <%= f.text_field :name %>
-
-            <%= f.submit %>
-
-          </td>
-
-        <% end %>
-
-      </tr>
-
-    </table>
-
-  </div>
-
-
-</main>
+</body>

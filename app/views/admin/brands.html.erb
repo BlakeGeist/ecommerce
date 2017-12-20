@@ -1,61 +1,73 @@
-<%#= params %>
+<body class="<%= params['controller'] %>-page <%= params['controller'] + '-' + params['action'] %>-page">
 
-<header>
+  <%#= params %>
 
-  <nav>
+  <header>
 
-    <span><%= link_to 'Admin Home', admin_index_path %></span>
+    <nav>
 
-    <span><%= render '/templates/user_nav' %></span>
+      <span><%= link_to 'Admin Home', admin_index_path %></span>
 
-  </nav>
+      <span><%= render '/templates/user_nav' %></span>
 
-</header>
+    </nav>
 
-<main>
+  </header>
 
-  <div class="admin-body">
+  <main>
 
-      <div class="admin-body-brands">
+    <% if @site %>
 
-        <%= form_tag url_for(:controller => 'brands', :action => 'send_brand_to_site'), :method => 'post', remote: true do |f| %>
+      <%= link_to 'Brands', admin_brands_path(@site) %>
 
-          <%= hidden_field_tag 'site_id', @site.id %>
+      | <%= link_to 'Categories', admin_categories_path(@site) %>
 
-          Brand
+    <% end %>
 
-          <%= select_tag 'brand_id', options_from_collection_for_select(@brands, 'id', 'name') %>
+    <div class="admin-body">
 
-          <%= submit_tag('Add to site') %>
+        <div class="admin-body-brands">
 
-        <% end %>
+          <%= form_tag url_for(:controller => 'brands', :action => 'send_brand_to_site'), :method => 'post', remote: true do |f| %>
 
-      </div>
+            <%= hidden_field_tag 'site_id', @site.id %>
 
-      <div calss="admin-body-brands-sites-brands">
+            Brand
 
-        <% @site_brands.each do |brand| %>
+            <%= select_tag 'brand_id', options_from_collection_for_select(@brands, 'id', 'name') %>
 
-          <div><%= brand.name %></div>
-
-          <div>
-
-          <%= form_for brand do |f|  %>
-
-            <%= f.text_field :name %>
-
-            <%= f.text_field :logo %>
-
-            <%= f.submit %>
+            <%= submit_tag('Add to site') %>
 
           <% end %>
 
-          </div>
+        </div>
 
-        <% end %>
+        <div calss="admin-body-brands-sites-brands">
 
-      </div>
+          <% @site_brands.each do |brand| %>
 
-  </div>
+            <div><%= brand.name %></div>
 
-</main>
+            <div>
+
+            <%= form_for brand do |f|  %>
+
+              <%= f.text_field :name %>
+
+              <%= f.text_field :logo %>
+
+              <%= f.submit %>
+
+            <% end %>
+
+            </div>
+
+          <% end %>
+
+        </div>
+
+    </div>
+
+  </main>
+
+</body>
