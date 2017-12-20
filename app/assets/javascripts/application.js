@@ -30,7 +30,7 @@ $(document).on('click', '[data-target="categories-mega-menu"]', function(event) 
   event.stopPropagation();
 })
 
-$(document).on('mouseover', '[data-product-photo]', function(event) {
+$(document).on('mouseover click', '[data-product-photo]', function(event) {
   var targetImageId = $(this).find('img').attr('src');
   $('.products-product-image').attr('src', targetImageId);
 });

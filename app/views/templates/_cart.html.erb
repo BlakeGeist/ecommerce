@@ -36,7 +36,7 @@
 
           <% end %>
 
-          <div class="cart-item-detail">$<%= cart_price(item.quanitity, returnProduct(item.product_id).product_details.where(name: 'price')[0]['value']) %></div>
+          <div class="cart-item-detail mod-price">$<%= cart_price(item.quanitity, returnProduct(item.product_id).product_details.where(name: 'price')[0]['value']) %></div>
 
         </div>
 

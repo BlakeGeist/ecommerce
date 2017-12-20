@@ -40,13 +40,9 @@
 
             <% @product.product_photos.each do |photo| %>
 
-              <div class="product-images-bar-image">
+              <div class="product-images-bar-image" data-product-photo="<%= photo.id %>">
 
-                <%= link_to('', remote: true, class: '', data: {'product-photo' => photo.id}) do %>
-
-                  <%= image_tag(photo.image.url('medium')) %>
-
-                <% end %>
+                <%= image_tag(photo.image.url('medium')) %>
 
               </div>
 
