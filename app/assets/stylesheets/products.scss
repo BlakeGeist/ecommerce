@@ -89,6 +89,9 @@ main {
       }
 
 .products-show-page {
+  h1 {
+    flex: 1 1 100%;
+  }
   .product {
     display: flex;
     flex: 1 1;
