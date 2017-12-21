@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
      @categories = Category.where(id: @site.site_categories.map(&:category_id))
      @brands = Brand.where(id: @site.site_brands.map(&:brand_id))
      @product = Product.friendly.find(params[:id])
+     @title = "#{@product.name}"
      amount = 2
      if @product.product_categories.first
        @product.product_categories.first.category_id
@@ -33,9 +34,14 @@ class ProductsController < ApplicationController
        else
          amount = 4
        end
+       return
      end
-     @products = Product.where(id: @site.site_products.map(&:product_id)).where(product_categories: {category_id: @product.product_categories.first.category_id}).joins(:product_categories).uniq.first(amount)
-     @title = "#{@product.name}"
+     if @product.product_categories.first
+       @products = Product.where(id: @site.site_products.map(&:product_id)).where(product_categories: {category_id: @product.product_categories.first.category_id}).joins(:product_categories).uniq.first(amount)
+       return
+     end
+     @products = Product.where(id: @site.site_products.map(&:product_id)).where(product_categories: {category_id: 1}).joins(:product_categories).uniq.first(amount)
+
    end
 
    def create
