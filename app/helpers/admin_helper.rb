@@ -13,4 +13,7 @@ module AdminHelper
   def admin_categories_path(site)
     return '/admin/sites/' + site.slug + '/categories'
   end
+  def admin_products_path(site)
+    return '/admin/sites/' + site.slug + '/products'
+  end
 end
