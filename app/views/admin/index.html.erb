@@ -22,9 +22,9 @@
 
     | <%= link_to 'Categories', admin_categories_path(@site) %>
 
+    | <%= link_to 'Products', admin_products_path(@site) %>
+
   <% end %>
-
-
 
     <div class="admin-body">
 
@@ -109,6 +109,10 @@
       </table>
 
     </div>
+
+    <%= render '/templates/products' %>
+
+    <%= will_paginate @products %>
 
   </main>
 

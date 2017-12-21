@@ -1,0 +1,35 @@
+<body class="<%= params['controller'] %>-page <%= params['controller'] + '-' + params['action'] %>-page">
+
+  <%#= params %>
+
+  <header>
+
+    <nav>
+
+      <span><%= link_to 'Admin Home', admin_index_path %></span>
+
+      <span><%= render '/templates/user_nav' %></span>
+
+    </nav>
+
+  </header>
+
+  <main>
+
+    <% if @site %>
+
+      <%= link_to 'Brands', admin_brands_path(@site) %>
+
+      | <%= link_to 'Categories', admin_categories_path(@site) %>
+
+      | <%= link_to 'Products', admin_products_path(@site) %>
+
+    <% end %>
+
+    <%= render '/templates/admin_products' %>
+
+    <%= will_paginate @products %>
+
+  </main>
+
+</body>
