@@ -24,12 +24,15 @@ class ProductsController < ApplicationController
      @categories = Category.where(id: @site.site_categories.map(&:category_id))
      @brands = Brand.where(id: @site.site_brands.map(&:brand_id))
      @product = Product.friendly.find(params[:id])
-     @product.product_categories.first.category_id
-     @product_description_length = @product.product_details.where(product_details: {name: 'description'})[0]['value'].length
-     if @product_description_length < 550
-       amount = 2
-     else
-       amount = 4
+     amount = 2
+     if @product.product_categories.first
+       @product.product_categories.first.category_id
+       @product_description_length = @product.product_details.where(product_details: {name: 'description'})[0]['value'].length
+       if @product_description_length < 550
+         amount = 2
+       else
+         amount = 4
+       end
      end
      @products = Product.where(id: @site.site_products.map(&:product_id)).where(product_categories: {category_id: @product.product_categories.first.category_id}).joins(:product_categories).uniq.first(amount)
      @title = "#{@product.name}"
