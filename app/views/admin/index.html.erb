@@ -16,15 +16,7 @@
 
   <main>
 
-  <% if @site %>
-
-    <%= link_to 'Brands', admin_brands_path(@site) %>
-
-    | <%= link_to 'Categories', admin_categories_path(@site) %>
-
-    | <%= link_to 'Products', admin_products_path(@site) %>
-
-  <% end %>
+    <%= render 'admin_header' %>
 
     <div class="admin-body">
 

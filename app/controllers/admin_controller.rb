@@ -28,6 +28,10 @@ class AdminController < ApplicationController
     @site_categories = Category.where(id: @site.site_categories.map(&:category_id)).order(:name) if @site
   end
 
+  def pages
+    @site = Site.find_by(slug: params[:site])
+  end
+
   def login
     if current_user && current_user.is_admin
       redirect_to :controller => 'admin', :action => 'index'
