@@ -18,6 +18,7 @@
 $(document).on('click', '[data-toggle]', function(event) {
   event.stopPropagation();
   event.preventDefault();
+  window.scrollTo(0, 0);
   var toggleTarget = $(this).data("toggle");
   $('[data-target="' + toggleTarget + '"]').toggleClass('is-open');
 });
