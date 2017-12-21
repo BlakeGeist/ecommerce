@@ -1,0 +1,67 @@
+<body class="<%= params['controller'] %>-page <%= params['controller'] + '-' + params['action'] %>-page">
+
+  <%#= params %>
+
+  <header>
+
+    <nav>
+
+      <span><%= link_to 'Admin Home', admin_index_path %></span>
+
+      <span><%= render '/templates/user_nav' %></span>
+
+    </nav>
+
+  </header>
+
+  <main>
+
+    <%= render 'admin_header' %>
+
+    <div class="admin-body">
+
+      <h2>Add a comment:</h2>
+
+      <%= form_for([@site, @site.pages.build]) do |f| %>
+        <p>
+          <%= f.label :name %><br>
+          <%= f.text_field :name %>
+        </p>
+        <p>
+          <%= f.label :text %><br>
+          <%= f.text_area :text %>
+        </p>
+        <p>
+          <%= f.submit %>
+        </p>
+      <% end %>
+
+      <table>
+
+        <tr>
+
+          <th>Page</th>
+
+          <th>Link</th>
+
+        </tr>
+
+        <% @site.pages.each do |page| %>
+
+          <tr>
+
+            <td><%= page.name %></td>
+
+            <td><%= link_to 'page', '' %></td>
+
+          </tr>
+
+        <% end %>
+
+      </table>
+
+    </div>
+
+  </main>
+
+</body>

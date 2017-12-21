@@ -1,0 +1,19 @@
+<% if @site %>
+
+  <div class="admin-header">
+
+    <nav>
+
+      <%= link_to 'Brands', admin_brands_path(@site) %>
+
+      | <%= link_to 'Categories', admin_categories_path(@site) %>
+
+      | <%= link_to 'Products', admin_products_path(@site) %>
+
+      | <%= link_to 'Pages', admin_page_path(@site, 'pages') %>
+
+    </nav>
+
+  </div>
+
+<% end %>

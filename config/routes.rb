@@ -33,7 +33,9 @@ Rails.application.routes.draw do
   end
 
   resources :transactions
-  resources :sites
+  resources :sites do
+    resources :pages
+  end
   resources :admin
   resources :charges do
     collection do
@@ -65,6 +67,7 @@ Rails.application.routes.draw do
   get '/admin/sites/:site/brands' => 'admin#brands'
   get '/admin/sites/:site/categories' => 'admin#categories'
   get '/admin/sites/:site/products' => 'admin#products'
+  get '/admin/sites/:site/pages' => 'admin#pages'
   get '/brands/:id/page/:page' => 'brands#show'
 
   # Example of regular route:
