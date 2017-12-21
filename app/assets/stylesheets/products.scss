@@ -93,7 +93,16 @@ main {
     display: flex;
     flex: 1 1;
     flex-wrap: wrap;
+    .product-sidebar {
+      flex: 1 1 100%;
+    }
   }
+    .products-product {
+      flex: 0 1 40%;
+    }
+      .products-product-heading {
+        font-size: 10px;
+      }
     .product-details {
       flex: 1 1;
       line-height: 30px;
