@@ -63,8 +63,6 @@ class Import < Thor
   desc "cats_to_brands", "scrape the mugshots on the following site"
   def cats_to_brands
 
-
-
     require File.expand_path('config/environment.rb')
 
     require 'rubygems'
@@ -137,7 +135,7 @@ class Import < Thor
       last_update = item.css('lastupdated').text
 
       #create a product
-      Product.find_or_create_by(
+      product = Product.find_or_create_by(
 
         :name => name.text,
 
@@ -145,12 +143,9 @@ class Import < Thor
 
       )
 
-      #get the product that was created
-      product = Product.last
+      #if product.product_details.where(name:'lastupdated')[0]
 
-      if product.product_details.where(name:'lastupdated')[0]
-
-        if last_update > product.product_details.where(name:'lastupdated').as_json[0]['value']
+    #    if last_update > product.product_details.where(name:'lastupdated').as_json[0]['value']
 
           #add 1 to the count of items in stock
   				in_stock_item_count = in_stock_item_count + 1
@@ -170,33 +165,41 @@ class Import < Thor
 
   				end
 
-        else
+          image = item.css('image').text
 
-          puts 'there was no update'
+          if image
 
-        end
-
-      else
-
-        #add 1 to the count of items in stock
-        in_stock_item_count = in_stock_item_count + 1
-
-        #loop of each of the node's children
-        item.children.each do |node|
-
-          #if the node has text, and the text length is greate than 0, and the node's name is not text
-          if node.text && node.text.length > 0 && node.name != 'text'
-
-            #create the product detail
-            product.product_details.find_or_create_by!(name: node.name, value: node.text)
-
-            puts "#{node.name}: #{node.text}"
+            product.product_photos.find_or_create_by(image: image)
 
           end
 
-        end
+      #  else
 
-			end
+      #    puts 'there was no update'
+
+      #  end
+
+      #else
+
+        #add 1 to the count of items in stock
+      #  in_stock_item_count = in_stock_item_count + 1
+
+        #loop of each of the node's children
+      #  item.children.each do |node|
+
+          #if the node has text, and the text length is greate than 0, and the node's name is not text
+      #    if node.text && node.text.length > 0 && node.name != 'text'
+
+            #create the product detail
+      #      product.product_details.find_or_create_by!(name: node.name, value: node.text)
+
+      #      puts "#{node.name}: #{node.text}"
+
+      #    end
+
+    #    end
+
+			#end
 
 		end
 
