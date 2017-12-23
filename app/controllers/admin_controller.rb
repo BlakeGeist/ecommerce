@@ -14,6 +14,7 @@ class AdminController < ApplicationController
     @site = Site.find_by(slug: params[:site])
     @search = Product.all.ransack(params[:q])
     @products = @search.result(distinct: true).paginate(:page => params[:page], :per_page => 100)
+    @active_products = @site.site_products.map(&:product_id)
   end
 
   def brands
