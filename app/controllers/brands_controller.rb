@@ -50,7 +50,6 @@ class BrandsController < ApplicationController
 
    def update
      @brand = Brand.friendly.find(params[:id])
-
      if @brand.update(brand_params)
        redirect_to @brand
      end

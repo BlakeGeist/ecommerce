@@ -9,7 +9,11 @@ class SitesController < ApplicationController
       else
         @site = Site.find_by(name: request.domain)
       end
-      unless @site
+      if @site
+        if @site.site_details.where(name: 'title')[0]
+          @title = @site.site_details.where(name: 'title')[0]['value']
+        end
+      else
         if params[:controller] == 'sites'
           redirect_to :controller => 'admin', :action => 'login'
         end
