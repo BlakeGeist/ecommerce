@@ -143,9 +143,9 @@ class Import < Thor
 
       )
 
-      #if product.product_details.where(name:'lastupdated')[0]
+      if product.product_details.where(name:'lastupdated')[0]
 
-    #    if last_update > product.product_details.where(name:'lastupdated').as_json[0]['value']
+        if last_update > product.product_details.where(name:'lastupdated').as_json[0]['value']
 
           #add 1 to the count of items in stock
   				in_stock_item_count = in_stock_item_count + 1
@@ -169,37 +169,41 @@ class Import < Thor
 
           if image
 
-            product.product_photos.find_or_create_by(image: image)
+            unless product.product_photos.first
+
+              product.product_photos.find_or_create_by(image: image)
+
+            end
 
           end
 
-      #  else
+        else
 
-      #    puts 'there was no update'
+          puts 'there was no update'
 
-      #  end
+        end
 
-      #else
+      else
 
         #add 1 to the count of items in stock
-      #  in_stock_item_count = in_stock_item_count + 1
+        in_stock_item_count = in_stock_item_count + 1
 
         #loop of each of the node's children
-      #  item.children.each do |node|
+        item.children.each do |node|
 
           #if the node has text, and the text length is greate than 0, and the node's name is not text
-      #    if node.text && node.text.length > 0 && node.name != 'text'
+          if node.text && node.text.length > 0 && node.name != 'text'
 
             #create the product detail
-      #      product.product_details.find_or_create_by!(name: node.name, value: node.text)
+            product.product_details.find_or_create_by!(name: node.name, value: node.text)
 
-      #      puts "#{node.name}: #{node.text}"
+            puts "#{node.name}: #{node.text}"
 
-      #    end
+          end
 
-    #    end
+        end
 
-			#end
+			end
 
 		end
 
