@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   resources :transactions
   resources :sites do
     resources :pages
+    resources :site_details
   end
   resources :admin
   resources :charges do

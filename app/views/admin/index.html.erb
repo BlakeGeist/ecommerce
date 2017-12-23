@@ -72,6 +72,37 @@
 
             </td>
 
+            <td>
+
+              <% if site.site_details.where(name: 'title')[0] %>
+
+                <% title = site.site_details.where(name: 'title')[0] %>
+
+                <%= form_for [site, title] do |f| %>
+
+                  <%= f.label :title %>
+                  <%= f.text_field :value %>
+                  <%= f.submit %>
+
+                <% end %>
+
+
+              <% else %>
+
+                <%= form_for([site, site.site_details.build]) do |f| %>
+
+                  <%= f.hidden_field :name, value: 'title' %>
+
+                  <%= f.label :title %>
+                  <%= f.text_field :value %>
+                  <%= f.submit %>
+
+                <% end %>
+
+              <% end %>
+
+            </td>
+
           </tr>
 
         <% end %>
