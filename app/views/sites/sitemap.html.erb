@@ -1,0 +1,17 @@
+<%= render 'templates/header' %>
+
+<main>
+
+  <div>
+
+    <% @products.each do |product| %>
+
+      <div><%= link_to product.name, product_url(product) %></div>
+
+    <% end %>
+
+  </div>
+
+</main>
+
+<%= render 'templates/footer' %>

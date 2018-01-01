@@ -56,6 +56,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/sitemap' => 'sites#sitemap'
   get '/products/page/:page' => 'products#index'
   get '/categories' => 'categories#index'
   get '/login' => 'admin#login'
@@ -70,6 +71,7 @@ Rails.application.routes.draw do
   get '/admin/sites/:site/products' => 'admin#products'
   get '/admin/sites/:site/pages' => 'admin#pages'
   get '/brands/:id/page/:page' => 'brands#show'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
