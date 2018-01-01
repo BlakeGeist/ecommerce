@@ -300,9 +300,15 @@ class Import < Thor
 
   desc 'getAuctionsCount', 'get auctions count'
   def getAuctionsCount
-    require  File.expand_path('config/environment.rb')
-    @products = Product.includes(:product_details).where(product_details: {name: 'active' }).where(product_details: {value: 1 })
+    require File.expand_path('config/environment.rb')
+
+    require 'rubygems'
+
+		puts 'getting ebay auctions count'
+
+    @products = Product.all
     @products.each do |product|
+      puts product.name
       @response = 0
       finder = Rebay2::Finding.new
       response = finder.find_items_by_keywords(
@@ -310,17 +316,16 @@ class Import < Thor
           :keywords => product.name,
           :itemFilter => [
             :name => "ListingType",
-            :value => "AuctionWithBIN",
-            :value => "FixedPrice"
+            :value => "AuctionWithBIN"
           ]
         }
       )
       if response.success? && response.response['searchResult']['item']
         @response = response.response['searchResult']['item'].count
-        product.ebay_count =  @response
+        product.ebay_count = @response
       else
         @response = 0
-        product.ebay_count =  @response
+        product.ebay_count = @response
       end
     end
   end
@@ -343,8 +348,14 @@ class Import < Thor
 
   desc 'getCompletedAuctionsCount', 'get completed auctions count'
   def getCompletedAuctionsCount
-    require  File.expand_path('config/environment.rb')
-    @products = Product.includes(:product_details).where(product_details: {name: 'active' }).where(product_details: {value: 1 })
+    require File.expand_path('config/environment.rb')
+
+    require 'rubygems'
+
+		puts 'getting completed ebay auctions count'
+
+    @products = Product.all
+    @products = Product.joins(:product_details).where(product_details: {name: 'active' }).where(product_details: {value: 1 })
     @products.each do |product|
       @response = 0
       finder = Rebay2::Finding.new
