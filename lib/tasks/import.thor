@@ -301,7 +301,7 @@ class Import < Thor
   desc 'getAuctionsCount', 'get auctions count'
   def getAuctionsCount
     require  File.expand_path('config/environment.rb')
-    @products = Product.all
+    @products = Product.includes(:product_details).where(product_details: {name: 'active' }).where(product_details: {value: 1 })
     @products.each do |product|
       @response = 0
       finder = Rebay2::Finding.new
@@ -344,7 +344,7 @@ class Import < Thor
   desc 'getCompletedAuctionsCount', 'get completed auctions count'
   def getCompletedAuctionsCount
     require  File.expand_path('config/environment.rb')
-    @products = Product.all
+    @products = Product.includes(:product_details).where(product_details: {name: 'active' }).where(product_details: {value: 1 })
     @products.each do |product|
       @response = 0
       finder = Rebay2::Finding.new
