@@ -5,6 +5,8 @@ class CategoriesController < ApplicationController
     @site = Site.find_by(name: request.domain)
     @categories = Category.where(id: @site.site_categories.map(&:category_id))
     @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(10)
+    @title = 'Categories | ' + @site.name
+
     respond_to do |format|
       format.js
       format.html
@@ -16,7 +18,7 @@ class CategoriesController < ApplicationController
      @category = Category.friendly.find(params[:id])
      @categories = Category.where(id: @site.site_categories.map(&:category_id)).paginate(:page => params[:page], :per_page => 10)
      @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(10)
-     @title = "#{@category.name}"
+     @title = "#{@category.name} | #{@site.name}"
      @products = Product.where(id: @site.site_products.map(&:product_id)).where(product_categories: {category_id: @category.id}).joins(:product_categories).uniq.paginate(:page => params[:page], :per_page => 48)
    end
 

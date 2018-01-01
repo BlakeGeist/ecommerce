@@ -3,6 +3,7 @@ class BrandsController < ApplicationController
     @site = Site.find_by(name: request.domain)
     @categories = Category.where(id: @site.site_categories.map(&:category_id)).paginate(:page => params[:page], :per_page => 10)
     @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).paginate(:page => params[:page], :per_page => 48)
+    @title = 'Brands | ' + @site.name
     respond_to do |format|
       format.js
       format.html
@@ -14,7 +15,7 @@ class BrandsController < ApplicationController
      @brand = Brand.friendly.find(params[:id])
      @categories = Category.where(id: @site.site_categories.map(&:category_id)).paginate(:page => params[:page], :per_page => 10)
      @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(10)
-     @title = "#{@brand.name}"
+     @title = "#{@brand.name} | #{@site.name}"
      @products = Product.where(id: @site.site_products.map(&:product_id)).joins(:product_details).where(product_details: {name: 'brand'}).where(product_details: {value: @brand.name}).order(:name).paginate(:page => params[:page], :per_page => 48)
    end
 
