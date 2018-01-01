@@ -59,8 +59,8 @@ class SitesController < ApplicationController
      end
      @categories = Category.where(id: @site.site_categories.map(&:category_id)).first(12)
      @brands = Brand.where(id: @site.site_brands.map(&:brand_id)).first(12)
-
      @products = Product.where(id: @site.site_products.map(&:product_id))
+     @title = 'Sitemap | ' + @site.name
    end
 
   private
