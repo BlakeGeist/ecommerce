@@ -298,4 +298,74 @@ class Import < Thor
 
   end
 
+  desc 'getAuctionsCount', 'get auctions count'
+  def getAuctionsCount
+    require  File.expand_path('config/environment.rb')
+    @products = Product.all
+    @products.each do |product|
+      @response = 0
+      finder = Rebay2::Finding.new
+      response = finder.find_items_by_keywords(
+        {
+          :keywords => product.name,
+          :itemFilter => [
+            :name => "ListingType",
+            :value => "AuctionWithBIN",
+            :value => "FixedPrice"
+          ]
+        }
+      )
+      if response.success? && response.response['searchResult']['item']
+        @response = response.response['searchResult']['item'].count
+        product.ebay_count =  @response
+      else
+        @response = 0
+        product.ebay_count =  @response
+      end
+    end
+  end
+
+  desc 'moveGetCompletedAuctionsCount', 'get completed auctions count'
+  def moveGetCompletedAuctionsCount
+    require  File.expand_path('config/environment.rb')
+
+    @products = Product.all
+    @products.each do |product|
+
+      product.ebay_count = product.product_details.where(name: 'ebay_count').as_json[0]['value']
+
+      product.comp_ebay_count = product.product_details.where(name: 'comp_ebay_count').as_json[0]['value']
+
+      product.save
+
+    end
+  end
+
+  desc 'getCompletedAuctionsCount', 'get completed auctions count'
+  def getCompletedAuctionsCount
+    require  File.expand_path('config/environment.rb')
+    @products = Product.all
+    @products.each do |product|
+      @response = 0
+      finder = Rebay2::Finding.new
+      response = finder.find_completed_items(
+        {
+          :keywords => product.name,
+          :itemFilter => [
+            :name => "ListingType",
+            :value => "AuctionWithBIN",
+            :value => "FixedPrice"
+          ]
+        }
+      )
+      if response.success? && response.response
+        @response = response.response['searchResult']['@count']
+        product.comp_ebay_count =  @response
+      else
+        @response = 0
+        product.comp_ebay_count =  @response
+      end
+    end
+  end
+
 end

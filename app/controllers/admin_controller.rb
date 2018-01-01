@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+  include ProductsHelper
   before_action :auth_user, only: [:index]
   def index
     @sites = Site.order('created_at DESC')
@@ -12,7 +13,8 @@ class AdminController < ApplicationController
 
   def products
     @site = Site.find_by(slug: params[:site])
-    @search = Product.all.ransack(params[:q])
+    @products = Product.includes(:product_details).where(product_details: {name: 'active' }).where(product_details: {value: 1 })
+    @search = @products.ransack(params[:q])
     @products = @search.result(distinct: true).paginate(:page => params[:page], :per_page => 100)
     @active_products = @site.site_products.map(&:product_id)
   end
