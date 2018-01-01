@@ -327,6 +327,7 @@ class Import < Thor
         @response = 0
         product.ebay_count = @response
       end
+      product.save
     end
   end
 
@@ -376,6 +377,7 @@ class Import < Thor
         @response = 0
         product.comp_ebay_count =  @response
       end
+      product.save
     end
   end
 
