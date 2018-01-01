@@ -32,6 +32,12 @@
 
     </div>
 
+    <%= sort_link(@search, :name) %>
+
+    <%= sort_link(@search, :ebay_count) %>
+
+    <%= sort_link(@search, :comp_ebay_count) %>
+
     <%= render '/templates/admin_products' %>
 
     <%= will_paginate @products %>
